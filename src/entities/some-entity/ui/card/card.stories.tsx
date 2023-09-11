@@ -4,7 +4,7 @@ import React from 'react'
 import { Card } from './card'
 
 const StoryMeta: ComponentMeta<typeof Card> = {
-  title: 'entities/your-entity/ui',
+  title: 'entities/some-entity/ui',
   component: Card,
   args: {},
   argTypes: {},

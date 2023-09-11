@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-native start --resetCache",
+    "storybook-generate": "sb-rn-get-stories",
+    "storybook-watch": "sb-rn-watcher",
+    "start": "yarn storybook-generate && react-native start --resetCache",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "lint": "yarn eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
     "test": "jest",
-    "storybook-generate": "sb-rn-get-stories",
-    "storybook-watch": "sb-rn-watcher",
     "ts:check": "tsc --noEmit -p ./tsconfig.json --pretty"
   },
   "dependencies": {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 import { styled } from '@ui/theme'
 
 import { Typography as TypographyComponent } from './typography'
@@ -9,6 +8,11 @@ const TypographyWithPadding = styled(TypographyComponent)`
     ${({ theme }) => theme.spacing(2)}px;
 `
 
+const Wrapper = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.palette.background.primary};
+`
+
 const Meta = {
   title: 'ui',
 }
@@ -16,7 +20,7 @@ const Meta = {
 export default Meta
 
 export const Typography = () => (
-  <View>
+  <Wrapper>
     <TypographyWithPadding variant="title">Title 34 bold</TypographyWithPadding>
     <TypographyWithPadding variant="largeTitle">
       Large title 28 medium
@@ -46,5 +50,5 @@ export const Typography = () => (
       Caption 2 11
     </TypographyWithPadding>
     <TypographyWithPadding variant="button">Button</TypographyWithPadding>
-  </View>
+  </Wrapper>
 )

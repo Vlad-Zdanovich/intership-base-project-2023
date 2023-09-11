@@ -48,7 +48,7 @@ try {
 
 const getStories = () => {
   return {
-    "./src/entities/your-entity/ui/card/card.stories.tsx": require("../src/entities/your-entity/ui/card/card.stories.tsx"),
+    "./src/entities/some-entity/ui/card/card.stories.tsx": require("../src/entities/some-entity/ui/card/card.stories.tsx"),
     "./src/ui/atoms/typography/typography.stories.tsx": require("../src/ui/atoms/typography/typography.stories.tsx"),
     "./src/ui/icons/icons.stories.tsx": require("../src/ui/icons/icons.stories.tsx"),
     "./src/ui/molecules/primary-button/primary-button.stories.tsx": require("../src/ui/molecules/primary-button/primary-button.stories.tsx"),
