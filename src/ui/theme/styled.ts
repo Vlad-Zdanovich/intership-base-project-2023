@@ -2,7 +2,6 @@ import styledComponents, {
   ReactNativeStyledInterface,
 } from 'styled-components/native'
 
-import { darkTheme } from './dark'
+import { Theme } from './types'
 
-export const styled: ReactNativeStyledInterface<typeof darkTheme> =
-  styledComponents as any
+export const styled: ReactNativeStyledInterface<Theme> = styledComponents as any

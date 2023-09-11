@@ -28,7 +28,10 @@
       "@flows/*": ["flows/*"],
       "@shared/*": ["shared/*"],
       "@ui/*": ["ui/*"],
-    }
+    },
+    "types": [
+      "styled-components-react-native"
+    ]
   },
   "include": ["src"]
 }
