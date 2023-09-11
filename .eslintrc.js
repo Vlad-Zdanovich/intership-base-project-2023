@@ -48,7 +48,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/**/*.story.*'],
+      files: ['src/**/*.stories.*'],
       rules: {
         'import/no-default-export': 'off',
       },

@@ -27,6 +27,7 @@
       "@features/*": ["features/*"],
       "@flows/*": ["flows/*"],
       "@shared/*": ["shared/*"],
+      "@ui/*": ["ui/*"],
     }
   },
   "include": ["src"]

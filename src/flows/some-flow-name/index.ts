@@ -1,0 +1,1 @@
+export { SomeFlowPageConnector } from './connectors'
