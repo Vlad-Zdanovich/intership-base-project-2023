@@ -5,7 +5,6 @@
 # Основные ссылки
 - [Дизайн банка](https://www.figma.com/file/NN9GlXCoDOAR5AFKrUAmkl/Skillbox?node-id=33%3A35654)
 - [Stoplight](https://kode-education.stoplight.io/docs/kode-bank/b3A6Mjc3NzQxNjY-get-api-core-profile)
-- [Требования в Confluence](https://confa.kode.ru/display/SKIL/Skillbox-Space+Home?src=spacemenu)
 - [Все лекции](https://drive.google.com/drive/folders/1VnOjvW98J0STs1EHIswyPfBOcvG_QUgs?usp=sharing)
 
 # Домашние задания
