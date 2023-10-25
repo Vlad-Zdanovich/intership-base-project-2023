@@ -26,8 +26,11 @@ export const App = () => {
   const [isStorybookVisible, setIsStorybookVisible] = React.useState(false)
 
   React.useEffect(() => {
-    DevSettings.addMenuItem('Storybook', () => setIsStorybookVisible(true))
-  }, [])
+    DevSettings.addMenuItem(
+      `${isStorybookVisible ? 'Turn off storybook' : 'Turn on storybook'}`,
+      () => setIsStorybookVisible((prevState) => !prevState),
+    )
+  }, [isStorybookVisible])
 
   if (isStorybookVisible) {
     return (

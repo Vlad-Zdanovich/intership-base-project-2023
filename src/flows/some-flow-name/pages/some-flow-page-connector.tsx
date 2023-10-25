@@ -18,11 +18,7 @@ export const SomeFlowPageConnector = () => {
 
   return (
     <Wrapper>
-      <Typography variant="largeTitle">Profile page!</Typography>
-      <Typography variant="caption1">
-        {JSON.stringify(process.env, null, ' ')}
-      </Typography>
-
+      <Typography variant="largeTitle">Home page!</Typography>
       <PrimaryButton onPress={onNavigate}>Go to profile!</PrimaryButton>
     </Wrapper>
   )

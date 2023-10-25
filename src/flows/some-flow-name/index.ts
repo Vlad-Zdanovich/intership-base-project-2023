@@ -1,1 +1,1 @@
-export { SomeFlowPageConnector } from './connectors'
+export { SomeFlowPageConnector } from './pages'
