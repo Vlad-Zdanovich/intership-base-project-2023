@@ -6,6 +6,7 @@
 - [Дизайн банка](https://www.figma.com/file/NN9GlXCoDOAR5AFKrUAmkl/Skillbox?node-id=33%3A35654)
 - [Stoplight](https://kode-education.stoplight.io/docs/kode-bank/b3A6Mjc3NzQxNjY-get-api-core-profile)
 - [Требования в Confluence](https://confa.kode.ru/display/SKIL/Skillbox-Space+Home?src=spacemenu)
+- [Все лекции](https://drive.google.com/drive/folders/1VnOjvW98J0STs1EHIswyPfBOcvG_QUgs?usp=sharing)
 
 # Домашние задания
 
@@ -31,7 +32,7 @@
 <details>
 <summary><b>Задание 1 - Typescript</b></summary>
 
-[Лекцию 1 можно посмотреть здесь]()
+[Лекцию 1 можно посмотреть здесь](https://drive.google.com/drive/folders/1-KkklPTKBUDrXqRbZFQL6xz2aSgkwRWa)
 
 [Переписать данный проект](https://github.com/kode-frontend/autumn_2022_typescript-homework) на TypeScript \
 Всё, что лежит в директории shared/providers переписывать на ts необязательно \
@@ -44,8 +45,8 @@
 <details>
 <summary><b>Задание 2 - React Native + Стилизация компонентов</b></summary>
 
-[Лекцию 2 можно посмотреть здесь]() \
-[Лекцию 3 можно посмотреть здесь]()
+[Лекцию 2 можно посмотреть здесь](https://drive.google.com/drive/folders/1c-GPaG1F53EeeJI0Hwc902kix4VN3lMo) \
+[Лекцию 3 можно посмотреть здесь](https://drive.google.com/drive/folders/1DipU7-tDp2BJAiR8VawXgiMhqigDfZ4i)
 
     При выполнении домашки необходимо использовать:
     - styled-components для стилизации
@@ -80,7 +81,7 @@
 <details>
 <summary><b>Задание 3 - Архитектура</b></summary>
 
-[Лекцию 4 можно посмотреть здесь]()
+[Лекцию 4 можно посмотреть здесь](https://drive.google.com/drive/folders/1A2r5X-nf2heOhHzj6DoENmCfjlZEkU3C)
 
 Необходимо организовать файловую структуру согласно архитектуре [Feature-Sliced v2](https://feature-sliced.design/ru/)
 
@@ -103,7 +104,7 @@
 <details>
 <summary><b>Задание 4 - State Management</b></summary>
 
-[Лекцию 5 можно посмотреть здесь]()
+[Лекцию 5 можно посмотреть здесь](https://drive.google.com/drive/folders/1-g8h6MssUVpoJ_cYPUT1pFGifYNZLc0-)
 
     Для работы понадобится установить effector
     https://effector.dev/docs/introduction/installation/
@@ -134,7 +135,7 @@
 <details>
 <summary><b>Задание 5 - React Query</b></summary>
 
-[Лекцию 6 можно посмотреть здесь]()
+[Лекцию 6 можно посмотреть здесь](https://drive.google.com/drive/folders/1_VYGaqZVotrXXtufl27n5V36cusG7Fem)
 
     Для работы понадобится установить React Query
     https://tanstack.com/query/v4/docs/react/installation
@@ -177,8 +178,6 @@
 
 <details>
 <summary><b>Задание 6 - Авторизация</b></summary>
-
-[Лекцию 7 можно посмотреть здесь]()
 
 ### Ссылки
 - [Урезанная авторизация в фигме](https://www.figma.com/file/KxWS0hlyfHJNiihnxDpPfU/Skillbox-Auth-Final?type=design&node-id=33-35654&mode=design&t=DBPvUVTrSKYCcQGp-0)
