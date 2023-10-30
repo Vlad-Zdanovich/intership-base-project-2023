@@ -1,0 +1,1 @@
+export type PaymentType = 'mobile' | 'hcs' | 'internet'

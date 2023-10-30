@@ -13,11 +13,16 @@ import {
   IconCamera,
   IconBank,
 } from '@shared/ui/icons'
+import { Typography } from '@shared/ui/atoms'
 
 const Wrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
-  flex: 1;
-  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 116px;
+  padding-left: 16px;
+  padding-bottom: 8px;
 `
 
 const Tabs = createBottomTabNavigator<TabsNavigationParamsList>()
@@ -31,7 +36,16 @@ export const AppNavigation = () => {
         tabBarStyle: {
           backgroundColor: theme.palette.background.primary,
         },
-        headerShown: false,
+        tabBarActiveTintColor: theme.palette.accent.secondary,
+        header: ({ options }) => {
+          return (
+            <Wrapper>
+              <Typography align="left" variant="largeTitle34">
+                {options.title}
+              </Typography>
+            </Wrapper>
+          )
+        },
       }}
     >
       <Tabs.Screen
@@ -39,7 +53,6 @@ export const AppNavigation = () => {
         component={MainScreen}
         options={{
           title: 'Главная',
-          tabBarActiveTintColor: theme.palette.accent.secondary,
           tabBarIcon: ({ color }) => {
             return <IconMainProduct color={color} />
           },
@@ -50,7 +63,6 @@ export const AppNavigation = () => {
         component={PaymentsScreen}
         options={{
           title: 'Платежи',
-          tabBarActiveTintColor: theme.palette.accent.secondary,
           tabBarIcon: ({ color }) => {
             return <IconPayment color={color} />
           },
@@ -61,7 +73,6 @@ export const AppNavigation = () => {
         component={ATMsScreen}
         options={{
           title: 'Банкоматы',
-          tabBarActiveTintColor: theme.palette.accent.secondary,
           tabBarIcon: ({ color }) => {
             return <IconBank color={color} />
           },
@@ -72,7 +83,6 @@ export const AppNavigation = () => {
         component={ProfileScreen}
         options={{
           title: 'Профиль',
-          tabBarActiveTintColor: theme.palette.accent.secondary,
           tabBarIcon: ({ color }) => {
             return <IconCamera color={color} />
           },
