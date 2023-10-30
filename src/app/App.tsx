@@ -54,9 +54,7 @@ export const App = () => {
       <AppThemeProvider>
         <NavigationContainer>
           <SafeAreaProvider>
-            <SafeArea>
-              <AppNavigation />
-            </SafeArea>
+            <AppNavigation />
           </SafeAreaProvider>
         </NavigationContainer>
       </AppThemeProvider>

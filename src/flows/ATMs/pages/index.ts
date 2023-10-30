@@ -1,0 +1,1 @@
+export { ATMsScreen } from "./ATMs-screen"
