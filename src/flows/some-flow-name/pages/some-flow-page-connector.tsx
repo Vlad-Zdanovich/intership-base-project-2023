@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { PrimaryButton } from '@ui/molecules'
-import { Typography } from '@ui/atoms'
-import { styled } from '@ui/theme'
+import { PrimaryButton } from '@shared/ui/molecules'
+import { Typography } from '@shared/ui/atoms'
+import { styled } from '@shared/ui/theme'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.primary};

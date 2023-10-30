@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Typography } from '@ui/atoms'
+import { Typography } from '@shared/ui/atoms'
 import { useTheme } from '@shared/hooks'
 
 export const Card = () => {

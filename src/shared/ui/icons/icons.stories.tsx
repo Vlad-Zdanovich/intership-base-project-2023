@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
-import { styled } from '@ui/theme'
+import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 
 import { Typography } from '../atoms/typography'

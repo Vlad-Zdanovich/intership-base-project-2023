@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled } from '@ui/theme'
+import { styled } from '@shared/ui/theme'
 
 import { Typography as TypographyComponent } from './typography'
 

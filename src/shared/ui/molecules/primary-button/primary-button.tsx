@@ -1,6 +1,6 @@
 import React, { TouchableOpacityProps } from 'react-native'
-import { styled } from '@ui/theme'
-import { Typography } from '@ui/atoms/typography'
+import { styled } from '@shared/ui/theme'
+import { Typography } from '@shared/ui/atoms/typography'
 
 const Wrapper = styled.TouchableOpacity`
   border-radius: 26px;

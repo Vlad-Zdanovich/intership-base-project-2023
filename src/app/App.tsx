@@ -3,7 +3,7 @@ import { DevSettings, SafeAreaView } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
 import { AppNavigation } from '@app/app-navigation'
-import { AppThemeProvider, styled } from '@ui/theme'
+import { AppThemeProvider, styled } from '@shared/ui/theme'
 
 import { Storybook } from '../../.storybook'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SomeFlowPageConnector } from '@flows/some-flow-name'
-import { styled } from '@ui/theme'
-import { Typography } from '@ui/atoms'
+import { styled } from '@shared/ui/theme'
+import { Typography } from '@shared/ui/atoms'
 import { useTheme } from '@shared/hooks'
 
 const Wrapper = styled.View`

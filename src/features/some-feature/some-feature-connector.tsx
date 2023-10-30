@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from '@ui/atoms'
+import { Typography } from '@shared/ui/atoms'
 
 export const SomeFeatureConnector = () => {
   return (
