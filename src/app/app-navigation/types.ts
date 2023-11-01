@@ -1,6 +1,6 @@
 export type TabsNavigationParamsList = {
     MainScreen: undefined,
-    PaymentsScreen: undefined,
+    PaymentsScreenConnector: undefined,
     ATMsScreen: undefined,
     ProfileScreen: undefined,
 }

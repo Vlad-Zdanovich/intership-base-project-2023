@@ -1,1 +1,1 @@
-export { PaymentsScreen } from "./payments-screen"
+export { PaymentsScreenConnector } from "./payments-screen-connector"

@@ -28,24 +28,13 @@ export type PaymentsItemProps = {
 export const PaymentsItem = ({ type, onPress }: PaymentsItemProps) => {
   const theme = useTheme()
 
-  const getText = () => {
-    switch (type) {
-      case 'mobile':
-        return 'Мобильная связь'
-      case 'hcs':
-        return 'ЖКХ'
-      case 'internet':
-        return 'Интернет'
-    }
-  }
-
   const getIcon = () => {
-    switch (type) {
-      case 'mobile':
+    switch (type.category_name) {
+      case 'Мобильная связь':
         return <Icon1Mobile color={theme.palette.accent.primary} />
-      case 'hcs':
+      case 'ЖКХ':
         return <Icon1JKH color={theme.palette.accent.primary} />
-      case 'internet':
+      case 'Интернет':
         return <Icon1Internet color={theme.palette.accent.primary} />
     }
   }
@@ -54,7 +43,7 @@ export const PaymentsItem = ({ type, onPress }: PaymentsItemProps) => {
     <Wrapper onPress={() => onPress(type)}>
       <IconWrapper>{getIcon()}</IconWrapper>
       <Typography variant="body15Regular" style={{ alignSelf: 'center' }}>
-        {getText()}
+        {type.category_name}
       </Typography>
     </Wrapper>
   )

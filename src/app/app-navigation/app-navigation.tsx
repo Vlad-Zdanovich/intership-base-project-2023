@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 import { MainScreen } from '@flows/MainScreen/pages'
-import { PaymentsScreen } from '@flows/Payments/pages'
+import { PaymentsScreenConnector } from '@flows/Payments/pages'
 import { ATMsScreen } from '@flows/ATMs/pages'
 import { ProfileScreen } from '@flows/Profile/pages'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -59,8 +59,8 @@ export const AppNavigation = () => {
         }}
       />
       <Tabs.Screen
-        name="PaymentsScreen"
-        component={PaymentsScreen}
+        name="PaymentsScreenConnector"
+        component={PaymentsScreenConnector}
         options={{
           title: 'Платежи',
           tabBarIcon: ({ color }) => {
