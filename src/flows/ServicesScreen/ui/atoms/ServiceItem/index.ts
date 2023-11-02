@@ -1,0 +1,1 @@
+export { ServiceItem } from "./servise-item"

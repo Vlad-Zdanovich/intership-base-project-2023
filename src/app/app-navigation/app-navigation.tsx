@@ -62,7 +62,8 @@ export const AppNavigation = () => {
         name="PaymentsScreenConnector"
         component={PaymentsScreenConnector}
         options={{
-          title: 'Платежи',
+          title: 'Платежы',
+          headerShown: false,
           tabBarIcon: ({ color }) => {
             return <IconPayment color={color} />
           },

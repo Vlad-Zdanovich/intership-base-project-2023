@@ -1,8 +1,12 @@
-import React from 'react'
-import { Typography } from '@shared/ui/atoms'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { Separator, Typography } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '@flows/Payments/ui/molecules/types'
+import { useTheme } from '@shared/hooks'
+import { FlatList } from 'react-native'
+import { ServiceItem } from '../ui/atoms/ServiceItem'
+import { Service } from '@shared/atoms/payment-type'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.primary};
@@ -15,9 +19,43 @@ type Props = NativeStackScreenProps<
 >
 
 export const ServicesScreen = ({ navigation, route }: Props) => {
+  const { category_name, services } = route.params
+  const [search, setSearch] = useState('')
+  const theme = useTheme()
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitleVisible: false,
+      headerTitle: () => {
+        return (
+          <Typography
+            align="left"
+            variant="subtitle"
+            style={{ color: theme.palette.text.primary }}
+          >
+            {category_name}
+          </Typography>
+        )
+      },
+      headerSearchBarOptions: {
+        onChangeText: (event) => setSearch(event.nativeEvent.text),
+      },
+    })
+  }, [])
+
+  function onServiceTapped(service: Service) {}
+
   return (
     <Wrapper>
-      <Typography variant="largeTitle">Home page!</Typography>
+      <FlatList
+        data={services}
+        contentContainerStyle={{ paddingTop: 126 }}
+        keyExtractor={(type) => type.service_id}
+        renderItem={({ item }) => (
+          <ServiceItem service={item} onPress={() => onServiceTapped(item)} />
+        )}
+        ItemSeparatorComponent={() => <Separator />}
+      />
     </Wrapper>
   )
 }

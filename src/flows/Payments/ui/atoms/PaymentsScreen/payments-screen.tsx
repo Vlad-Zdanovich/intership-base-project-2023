@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 import { styled } from '@shared/ui/theme'
 import { PaymentType } from '@shared/atoms/payment-type'
@@ -7,18 +7,23 @@ import { usePaymentTypes } from '@shared/hooks/use-payment-types'
 import { PaymentsItem } from '../PaymentsItem'
 import { PaymentsNavigationParamsList } from '../../molecules/types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Separator, Typography } from '@shared/ui/atoms'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
   flex: 1;
   align-item: center;
   justify-content: center;
-  padding: 16px;
 `
 
-const Separator = styled.View`
-  background: ${({ theme }) => theme.palette.content.secondary};
-  height: 1px;
+const HeaderWrapper = styled.View`
+  background-color: ${({ theme }) => theme.palette.background.primary};
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 116px;
+  padding-left: 16px;
+  padding-bottom: 8px;
 `
 
 type Props = NativeStackScreenProps<
@@ -27,19 +32,32 @@ type Props = NativeStackScreenProps<
 >
 
 export const PaymentsScreen = ({ navigation, route }: Props) => {
+  const { paymentTypes, isLoading, error } = usePaymentTypes()
   const theme = useTheme()
 
-  const { paymentTypes, isLoading, error } = usePaymentTypes()
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => {
+        return (
+          <HeaderWrapper>
+            <Typography align="left" variant="largeTitle34">
+              Платежы
+            </Typography>
+          </HeaderWrapper>
+        )
+      },
+    })
+  }, [])
 
   const onPaymentItem = (type: PaymentType) => {
-    navigation.navigate('ServicesScreen', type.services)
+    navigation.navigate('ServicesScreen', type)
   }
 
   return (
     <Wrapper>
       <FlatList
         data={paymentTypes}
-        contentContainerStyle={{ paddingBottom: 56 }}
+        contentContainerStyle={{ paddingBottom: 56, paddingHorizontal: 16 }}
         keyExtractor={(type) => type.category_id}
         renderItem={({ item }) => (
           <PaymentsItem type={item} onPress={(type) => onPaymentItem(type)} />
