@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react'
-import { ActivityIndicator, FlatList } from 'react-native'
+import { ActivityIndicator, Alert, FlatList } from 'react-native'
 import { styled } from '@shared/ui/theme'
 import { PaymentType } from '@shared/atoms/payment-type'
 import { useTheme } from '@shared/hooks'
@@ -47,7 +47,11 @@ export const PaymentsScreen = ({ navigation, route }: Props) => {
         )
       },
     })
-  }, [])
+
+    if (error) {
+      Alert.prompt(error)
+    }
+  }, [error])
 
   const onPaymentItem = (type: PaymentType) => {
     navigation.navigate('ServicesScreen', type)
