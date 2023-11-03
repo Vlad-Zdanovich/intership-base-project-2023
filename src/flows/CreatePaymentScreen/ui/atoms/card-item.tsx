@@ -7,6 +7,10 @@ import { View } from 'react-native'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
+`
+
+const CardWrapper = styled.View`
+  background: ${({ theme }) => theme.palette.background.secondary};
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -32,34 +36,46 @@ export const CardItem = ({ type, name, value }: CardItemProps) => {
 
   return (
     <Wrapper>
-      <IconCardMasterCard />
-      <TextWrapper>
-        <Typography
-          variant="body15Regular"
-          style={{ color: theme.palette.accent.tertiary, paddingBottom: 3 }}
-        >
-          {name}
-        </Typography>
-        <Typography
-          variant="caption1"
-          style={{ color: theme.palette.accent.tertiary }}
-        >
-          {value}
-        </Typography>
-      </TextWrapper>
-
-      <View
+      <Typography
+        variant="body15Semibold"
         style={{
-          flex: 1,
-          alignSelf: 'center',
-          flexDirection: 'column',
+          padding: 16,
+          color: theme.palette.text.tertiary,
+          backgroundColor: theme.palette.background.secondary,
         }}
       >
-        <IconChevronDown
-          style={{ alignSelf: 'flex-end' }}
-          color={theme.palette.content.tertiary}
-        />
-      </View>
+        Карта для оплаты
+      </Typography>
+      <CardWrapper>
+        <IconCardMasterCard />
+        <TextWrapper>
+          <Typography
+            variant="body15Regular"
+            style={{ color: theme.palette.accent.tertiary, paddingBottom: 3 }}
+          >
+            {name}
+          </Typography>
+          <Typography
+            variant="caption1"
+            style={{ color: theme.palette.accent.tertiary }}
+          >
+            {value}
+          </Typography>
+        </TextWrapper>
+
+        <View
+          style={{
+            flex: 1,
+            alignSelf: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <IconChevronDown
+            style={{ alignSelf: 'flex-end' }}
+            color={theme.palette.content.tertiary}
+          />
+        </View>
+      </CardWrapper>
     </Wrapper>
   )
 }

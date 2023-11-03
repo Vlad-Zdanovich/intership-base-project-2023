@@ -1,8 +1,8 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useState } from 'react'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
-import { Image } from 'react-native'
-import { useState } from '@storybook/addons'
+import MaskInput from 'react-native-mask-input'
+import { PHONE_MASK } from '@shared/atoms'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
@@ -27,8 +27,15 @@ const Icon = styled.Image`
   border-radius: 12px;
 `
 
-const PhoneInputView = styled.TextInput`
+const PhoneInputView = styled(MaskInput)`
+  color: ${({ theme }) => theme.palette.text.primary};
   padding-horizontal: 16px;
+  font-family: SF Pro Text;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.24px;
 `
 
 type CardItemProps = {
@@ -40,18 +47,20 @@ export const PhoneInput = ({ icon, onValueChange }: CardItemProps) => {
   const [phone, setPhone] = useState('')
   const theme = useTheme()
 
-  function validateText(text: string) {
-    setPhone(text)
-  }
-
   return (
     <Wrapper>
       <InputWrapper>
         <Icon source={{ uri: icon }} />
         <PhoneInputView
-          placeholder="Номер телефона"
           value={phone}
-          onChangeText={(text) => validateText(text)}
+          onChangeText={(masked: string) => {
+            setPhone(masked)
+            onValueChange(masked)
+          }}
+          keyboardType="phone-pad"
+          placeholder="Номер телефона"
+          placeholderTextColor={theme.palette.text.tertiary}
+          mask={PHONE_MASK}
         />
       </InputWrapper>
     </Wrapper>
