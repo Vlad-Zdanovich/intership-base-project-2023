@@ -5,25 +5,15 @@ import { PaymentType } from '@shared/atoms/payment-type'
 import { useTheme } from '@shared/hooks'
 import { usePaymentTypes } from '@shared/hooks/use-payment-types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Separator, Typography } from '@shared/ui/atoms'
 import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { PaymentsItem } from '@entities/payments-item'
+import { Separator } from '@shared/ui/atoms'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
   flex: 1;
   align-item: center;
   justify-content: center;
-`
-
-const HeaderWrapper = styled.View`
-  background-color: ${({ theme }) => theme.palette.background.primary};
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  height: 116px;
-  padding-left: 16px;
-  padding-bottom: 8px;
 `
 
 type Props = NativeStackScreenProps<
@@ -36,18 +26,6 @@ export const PaymentsScreen = ({ navigation, route }: Props) => {
   const theme = useTheme()
 
   useLayoutEffect(() => {
-    navigation.setOptions({
-      header: () => {
-        return (
-          <HeaderWrapper>
-            <Typography align="left" variant="largeTitle34">
-              Платежы
-            </Typography>
-          </HeaderWrapper>
-        )
-      },
-    })
-
     if (error) {
       Alert.prompt(error)
     }

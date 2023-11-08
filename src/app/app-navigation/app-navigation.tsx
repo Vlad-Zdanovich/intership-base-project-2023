@@ -17,7 +17,6 @@ import { PaymentsScreenConnector } from '@features/payments-connector'
 
 const Wrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
-  display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   height: 116px;

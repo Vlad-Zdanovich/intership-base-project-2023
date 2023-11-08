@@ -8,6 +8,16 @@ import {
   PaymentsScreen,
   ServicesScreen,
 } from 'pages/payments'
+import { styled } from '@shared/ui/theme'
+
+const HeaderWrapper = styled.View`
+  background-color: ${({ theme }) => theme.palette.background.primary};
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 116px;
+  padding-left: 16px;
+  padding-bottom: 8px;
+`
 
 const Stack = createNativeStackNavigator<PaymentsNavigationParamsList>()
 
@@ -35,11 +45,31 @@ export const PaymentsScreenConnector = () => {
         },
       }}
     >
-      <Stack.Screen component={PaymentsScreen} name="PaymentsScreen" />
-      <Stack.Screen component={ServicesScreen} name="ServicesScreen" />
+      <Stack.Screen
+        component={PaymentsScreen}
+        name="PaymentsScreen"
+        options={() => ({
+          header: () => (
+            <HeaderWrapper>
+              <Typography align="left" variant="largeTitle34">
+                Платежы
+              </Typography>
+            </HeaderWrapper>
+          ),
+        })}
+      />
+      <Stack.Screen
+        component={ServicesScreen}
+        name="ServicesScreen"
+        options={({ route }) => ({
+          title: route.params.category_name,
+          headerBackTitleVisible: false,
+        })}
+      />
       <Stack.Screen
         component={CreatePaymentScreen}
         name="CreatePaymentScreen"
+        options={({ route }) => ({ title: route.params.service_name })}
       />
     </Stack.Navigator>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, memo, useState } from 'react'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 import MaskInput from 'react-native-mask-input'
@@ -40,11 +40,12 @@ const PhoneInputView = styled(MaskInput)`
 
 type CardItemProps = {
   icon: string
-  onValueChange: (value: string) => void
+  phone: string
+  setPhone: Dispatch<SetStateAction<string>>
 }
 
-export const PhoneInput = ({ icon, onValueChange }: CardItemProps) => {
-  const [phone, setPhone] = useState('')
+export const PhoneInput = memo(({ icon, phone, setPhone }: CardItemProps) => {
+  console.log('PhoneInput')
   const theme = useTheme()
 
   return (
@@ -55,7 +56,6 @@ export const PhoneInput = ({ icon, onValueChange }: CardItemProps) => {
           value={phone}
           onChangeText={(masked: string) => {
             setPhone(masked)
-            onValueChange(masked)
           }}
           keyboardType="phone-pad"
           placeholder="Номер телефона"
@@ -65,4 +65,4 @@ export const PhoneInput = ({ icon, onValueChange }: CardItemProps) => {
       </InputWrapper>
     </Wrapper>
   )
-}
+})
