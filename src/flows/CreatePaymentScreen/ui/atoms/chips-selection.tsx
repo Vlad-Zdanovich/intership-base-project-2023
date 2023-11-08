@@ -18,6 +18,11 @@ const ChipsWrapper = styled.TouchableOpacity`
   margin-right: 16px;
 `
 
+const Chips = styled(Typography)`
+  margin-horizontal: 16px;
+  margin-vertical: 8px;
+`
+
 type ChipsSelectionProps = {
   style?: StyleProp<ViewStyle>
   onChipsTapped: (value: number) => void
@@ -39,11 +44,7 @@ export const ChipsSelection = ({
         showsHorizontalScrollIndicator={false}
         renderItem={(item) => (
           <ChipsWrapper onPress={() => onChipsTapped(item.item)}>
-            <Typography
-              variant="caption1"
-              children={`${item.item} ₽`}
-              style={{ marginHorizontal: 16, marginVertical: 8 }}
-            />
+            <Chips variant="caption1" children={`${item.item} ₽`} />
           </ChipsWrapper>
         )}
         horizontal={true}

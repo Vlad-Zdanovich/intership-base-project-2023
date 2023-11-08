@@ -1,9 +1,9 @@
-import { PressableProps } from 'react-native/types'
+import { TouchableOpacityProps } from 'react-native/types'
 import { IconClose } from '@shared/ui/icons'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 
-const Wrapper = styled.Pressable`
+const Wrapper = styled.TouchableOpacity`
   padding: 2px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.palette.text.secondary};
@@ -11,7 +11,7 @@ const Wrapper = styled.Pressable`
   align-items: center;
 `
 
-type Props = PressableProps & {
+type Props = TouchableOpacityProps & {
   size: number
 }
 

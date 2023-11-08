@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 import { styled } from '@shared/ui/theme'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '../PaymentsConnector/ui/molecules/types'
@@ -11,12 +11,13 @@ import {
   Platform,
   TouchableWithoutFeedback,
 } from 'react-native'
+import { Typography } from '@shared/ui/atoms'
 
-const Wrapper = styled.View`
+const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};
   flex: 1;
 `
-const ButtonWrapper = styled.View`
+const ButtonWrapper = styled.TouchableOpacity`
   background: ${({ theme }) => theme.palette.button.primary};
   justify-content: center;
   border-radius: 26px;
@@ -24,13 +25,8 @@ const ButtonWrapper = styled.View`
   margin-horizontal: 16px;
 `
 
-const SubmitButton = styled.Button`
-  font-family: SF Pro Text;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.41px;
+const SubmitButton = styled(Typography)`
+  color: ${({ theme }) => theme.palette.text.primary};
 `
 
 type CreatePaymentScreenProps = NativeStackScreenProps<
@@ -46,46 +42,38 @@ export const CreatePaymentScreen = ({
   const [amount, setAmount] = useState(0)
   const theme = useTheme()
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: route.params.service_name,
-    })
-  }, [])
-
-  function onSubmitButtonTapped() {
+  const onSubmitButtonTapped = useCallback(() => {
     if (amount > 1 && amount < 20000 && phone.length == 17) {
       Alert.alert('Успех')
     } else {
       Alert.alert('Ошибка', 'Проверьте введенные данные')
     }
-  }
+  }, [amount, phone])
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={100}
       style={{ flex: 1 }}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Wrapper>
-          <CardItem
-            type="mastercard"
-            name="Карта зарплатная"
-            value="457 334,00 ₽"
-          />
-          <PhoneInput
-            icon={route.params.service_icon}
-            onValueChange={(value) => setPhone(value)}
-          />
-          <AmountInput onValueChange={(value) => setAmount(value)} />
-          <ButtonWrapper>
-            <SubmitButton
-              color={theme.palette.text.primary}
-              title="Продолжить"
-              onPress={onSubmitButtonTapped}
-            />
-          </ButtonWrapper>
-        </Wrapper>
-      </TouchableWithoutFeedback>
+      <Wrapper contentInset={{ bottom: 16 }}>
+        <CardItem
+          type="mastercard"
+          name="Карта зарплатная"
+          value="457 334,00 ₽"
+        />
+        <PhoneInput
+          icon={route.params.service_icon}
+          phone={phone}
+          setPhone={setPhone}
+        />
+        <AmountInput inputValue={amount} setInputValue={setAmount} />
+        <ButtonWrapper onPress={onSubmitButtonTapped}>
+          <SubmitButton variant="button" align="center">
+            Продолжить
+          </SubmitButton>
+        </ButtonWrapper>
+      </Wrapper>
     </KeyboardAvoidingView>
   )
 }
