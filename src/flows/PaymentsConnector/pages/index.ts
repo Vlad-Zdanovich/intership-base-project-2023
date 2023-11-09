@@ -1,0 +1,1 @@
+export { PaymentsScreenConnector } from "./payments-screen-connector"

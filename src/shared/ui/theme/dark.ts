@@ -50,6 +50,13 @@ export const darkTheme = {
       letterSpacing: '0.34px',
       fontFamily: 'SF_PRO_MEDIUM_500',
     },
+    largeTitle34: {
+      size: '34px',
+      lineHeight: '41px',
+      letterSpacing: '0.41px',
+      fontFamily: 'SF_PRO_MEDIUM_500',
+      fontWidth: '700',
+    },
     subtitle: {
       size: '20px',
       lineHeight: '25px',

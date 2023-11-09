@@ -5,6 +5,7 @@ export type Theme = typeof darkTheme
 export type TypographyVariants =
   | 'title'
   | 'largeTitle'
+  | 'largeTitle34'
   | 'subtitle'
   | 'body20'
   | 'body17Medium'
