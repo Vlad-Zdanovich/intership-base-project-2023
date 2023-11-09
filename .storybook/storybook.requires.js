@@ -48,6 +48,12 @@ try {
 
 const getStories = () => {
   return {
+    "./src/entities/amount-input/ui/amount-input.stories.tsx": require("../src/entities/amount-input/ui/amount-input.stories.tsx"),
+    "./src/entities/card-item/ui/card-item.stories.tsx": require("../src/entities/card-item/ui/card-item.stories.tsx"),
+    "./src/entities/chips-selection/ui/chips-selection.stories.tsx": require("../src/entities/chips-selection/ui/chips-selection.stories.tsx"),
+    "./src/entities/payments-item/ui/payments-item.stories.tsx": require("../src/entities/payments-item/ui/payments-item.stories.tsx"),
+    "./src/entities/phone-input/ui/phone-input.stories.tsx": require("../src/entities/phone-input/ui/phone-input.stories.tsx"),
+    "./src/entities/service-item/ui/servise-item.stories.tsx": require("../src/entities/service-item/ui/servise-item.stories.tsx"),
     "./src/entities/some-entity/ui/card/card.stories.tsx": require("../src/entities/some-entity/ui/card/card.stories.tsx"),
     "./src/shared/ui/atoms/typography/typography.stories.tsx": require("../src/shared/ui/atoms/typography/typography.stories.tsx"),
     "./src/shared/ui/icons/icons.stories.tsx": require("../src/shared/ui/icons/icons.stories.tsx"),

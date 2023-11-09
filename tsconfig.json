@@ -23,9 +23,9 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
+      "@screens/*": ["screens/*"],
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
-      "@flows/*": ["flows/*"],
       "@shared/*": ["shared/*"],
       "@ui/*": ["ui/*"],
     },
