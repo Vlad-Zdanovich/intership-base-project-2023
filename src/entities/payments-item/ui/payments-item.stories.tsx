@@ -15,15 +15,7 @@ const StoryMeta: ComponentMeta<typeof PaymentsItem> = {
       services: [],
     },
   },
-  argTypes: {
-    type: {
-      category_id: '',
-      category_name: 'Мобильная связь',
-      category_icon:
-        'https://raw.githubusercontent.com/kode-frontend/files/main/MTS.png',
-      services: [],
-    },
-  },
+  argTypes: {},
 }
 
 export default StoryMeta

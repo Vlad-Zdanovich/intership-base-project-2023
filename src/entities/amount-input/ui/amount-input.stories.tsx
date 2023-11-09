@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { AmountInput } from './amount-input'
 
@@ -12,6 +12,8 @@ const StoryMeta: ComponentMeta<typeof AmountInput> = {
 
 export default StoryMeta
 
-export const AmountInputStories: ComponentStory<typeof AmountInput> = () => (
-  <AmountInput inputValue={0} setInputValue={() => {}} />
-)
+export const AmountInputStories: ComponentStory<typeof AmountInput> = () => {
+  const [inputValue, setInputValue] = useState(0)
+
+  return <AmountInput inputValue={inputValue} setInputValue={setInputValue} />
+}
