@@ -8,6 +8,7 @@ import { PhoneInput } from '@entities/phone-input'
 import { AmountInput } from '@entities/amount-input'
 import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { Typography } from '@shared/ui/atoms'
+import { ChipsSelection } from '@entities/chips-selection'
 
 const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};
@@ -18,7 +19,18 @@ const ButtonWrapper = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 26px;
   height: 52px;
-  margin-horizontal: 16px;
+  margin: 0px 16px;
+`
+
+const ChipsWrapper = styled.View`
+  background: ${({ theme }) => theme.palette.background.secondary};
+  margin-bottom: 16px;
+`
+
+const Chips = styled(ChipsSelection)`
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-bottom: 16px;
 `
 
 const SubmitButton = styled(Typography)`
@@ -60,6 +72,10 @@ export const CreatePaymentScreen = ({ route }: CreatePaymentScreenProps) => {
           setPhone={setPhone}
         />
         <AmountInput inputValue={amount} setInputValue={setAmount} />
+        <ChipsWrapper>
+          <Chips onChipsTapped={(value) => setAmount(value)} />
+        </ChipsWrapper>
+
         <ButtonWrapper onPress={onSubmitButtonTapped}>
           <SubmitButton variant="button" align="center">
             Продолжить

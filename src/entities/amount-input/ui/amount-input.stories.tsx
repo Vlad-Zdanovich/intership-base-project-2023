@@ -12,6 +12,6 @@ const StoryMeta: ComponentMeta<typeof AmountInput> = {
 
 export default StoryMeta
 
-export const CardStories: ComponentStory<typeof AmountInput> = () => (
-  <AmountInput onValueChange={() => {}} />
+export const AmountInputStories: ComponentStory<typeof AmountInput> = () => (
+  <AmountInput inputValue={0} setInputValue={() => {}} />
 )

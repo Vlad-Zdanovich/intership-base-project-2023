@@ -12,6 +12,6 @@ const StoryMeta: ComponentMeta<typeof CardItem> = {
 
 export default StoryMeta
 
-export const CardStories: ComponentStory<typeof CardItem> = () => (
+export const CardItemStories: ComponentStory<typeof CardItem> = () => (
   <CardItem name="Тест" value="123 $" type="mastercard" />
 )

@@ -12,6 +12,6 @@ const StoryMeta: ComponentMeta<typeof ChipsSelection> = {
 
 export default StoryMeta
 
-export const CardStories: ComponentStory<typeof ChipsSelection> = () => (
-  <ChipsSelection onChipsTapped={() => {}} />
-)
+export const ChipsSelectionStories: ComponentStory<
+  typeof ChipsSelection
+> = () => <ChipsSelection onChipsTapped={() => {}} />

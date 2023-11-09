@@ -1,1 +1,1 @@
-export { AmountInput } from "./amount-input"
+export { AmountInput } from './ui'

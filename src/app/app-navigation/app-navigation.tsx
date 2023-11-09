@@ -1,9 +1,6 @@
 import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
-import { MainScreen } from 'pages/MainScreen/pages'
-import { ATMsScreen } from 'pages/ATMs/pages'
-import { ProfileScreen } from 'pages/Profile/pages'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { TabsNavigationParamsList } from './types'
 import {
@@ -14,6 +11,9 @@ import {
 } from '@shared/ui/icons'
 import { Typography } from '@shared/ui/atoms'
 import { PaymentsScreenConnector } from '@features/payments-connector'
+import { MainScreen } from '@screens/main-screen'
+import { ATMsScreen } from '@screens/ATMs'
+import { ProfileScreen } from '@screens/profile'
 
 const Wrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};

@@ -1,1 +1,1 @@
-export { ChipsSelection } from "./chips-selection"
+export { ChipsSelection } from './ui'

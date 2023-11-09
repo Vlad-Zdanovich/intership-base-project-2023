@@ -1,1 +1,1 @@
-export { ServiceItem } from "./servise-item"
+export { ServiceItem } from './ui'

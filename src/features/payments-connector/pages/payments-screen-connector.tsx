@@ -3,13 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '../ui/molecules/types'
 import { useTheme } from '@shared/hooks'
 import { Typography } from '@shared/ui/atoms'
-import {
-  CreatePaymentScreen,
-  PaymentsScreen,
-  ServicesScreen,
-} from 'pages/payments'
 import { styled } from '@shared/ui/theme'
-
+import { ServicesScreen } from '@screens/services-screen'
+import { PaymentsScreen } from '@screens/payments-screen'
+import { CreatePaymentScreen } from '@screens/create-payment-screen'
 const HeaderWrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
   justify-content: flex-end;

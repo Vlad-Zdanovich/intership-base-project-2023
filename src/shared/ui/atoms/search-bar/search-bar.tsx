@@ -1,8 +1,8 @@
-import { IconSearch } from '@shared/ui/icons'
+import { IconClose, IconSearch } from '@shared/ui/icons'
 import { TextInputProps } from 'react-native/types'
 import { useCallback } from 'react'
-import { ClearButton } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
+import { useTheme } from '@shared/hooks'
 
 const Wrapper = styled.View`
   border-radius: 8px;
@@ -20,9 +20,18 @@ const SearchInput = styled.TextInput`
   margin-right: 4px;
 `
 
+const ClearButton = styled.TouchableOpacity`
+  padding: 2px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.palette.text.secondary};
+  justify-content: center;
+  align-items: center;
+`
+
 type Props = TextInputProps
 
 export const SearchBar = (props: Props) => {
+  const theme = useTheme()
   const onClearButtonClick = useCallback(() => {
     props.onChangeText?.('')
   }, [props])
@@ -32,7 +41,11 @@ export const SearchBar = (props: Props) => {
       <IconSearch />
       <SearchInput {...props} />
 
-      {props.value && <ClearButton size={12} onPress={onClearButtonClick} />}
+      {props.value && (
+        <ClearButton onPress={onClearButtonClick}>
+          <IconClose size={12} color={theme.palette.text.tertiary} />
+        </ClearButton>
+      )}
     </Wrapper>
   )
 }

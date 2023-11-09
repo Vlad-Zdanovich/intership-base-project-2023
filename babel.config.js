@@ -19,7 +19,7 @@ module.exports = {
           '@app': './src/app',
           '@entities': './src/entities',
           '@features': './src/features',
-          '@flows': './src/flows',
+          '@screens': './src/screens',
           '@shared': './src/shared',
           '@ui': './src/ui',
         },

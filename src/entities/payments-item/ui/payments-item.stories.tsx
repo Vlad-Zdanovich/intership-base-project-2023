@@ -6,21 +6,28 @@ import { PaymentsItem } from './payments-item'
 const StoryMeta: ComponentMeta<typeof PaymentsItem> = {
   title: 'entities/payments-item',
   component: PaymentsItem,
-  args: {},
-  argTypes: {},
-}
-
-export default StoryMeta
-
-export const CardStories: ComponentStory<typeof PaymentsItem> = () => (
-  <PaymentsItem
-    type={{
+  args: {
+    type: {
       category_id: '',
       category_name: 'Мобильная связь',
       category_icon:
         'https://raw.githubusercontent.com/kode-frontend/files/main/MTS.png',
       services: [],
-    }}
-    onPress={() => {}}
-  />
-)
+    },
+  },
+  argTypes: {
+    type: {
+      category_id: '',
+      category_name: 'Мобильная связь',
+      category_icon:
+        'https://raw.githubusercontent.com/kode-frontend/files/main/MTS.png',
+      services: [],
+    },
+  },
+}
+
+export default StoryMeta
+
+export const PaymentsItemStories: ComponentStory<typeof PaymentsItem> = ({
+  type,
+}) => <PaymentsItem type={type} onPress={() => {}} />

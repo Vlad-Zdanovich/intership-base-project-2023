@@ -1,19 +1,11 @@
-import React, {
-  Dispatch,
-  forwardRef,
-  SetStateAction,
-  useEffect,
-  useState,
-  memo,
-} from 'react'
+import React, { Dispatch, SetStateAction, useState, memo } from 'react'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 import { Separator, Typography } from '@shared/ui/atoms'
-import { ChipsSelection } from '@entities/chips-selection'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
-  margin-vertical: 16px;
+  margin-top: 16px;
 `
 
 const InputWrapper = styled.View`
@@ -35,7 +27,7 @@ const AmountInputView = styled.TextInput`
 
 const PostfixView = styled.Text`
   color: ${({ theme }) => theme.palette.text.primary};
-  padding-vertical: 16px;
+  padding: 16px 0px;
   font-family: SF Pro Display;
   font-size: 28px;
   font-style: normal;
@@ -52,13 +44,7 @@ const Title = styled(Typography)`
 `
 
 const InputSeparator = styled(Separator)`
-  margin-horizontal: 16px;
-`
-
-const Chips = styled(ChipsSelection)`
-  margin-top: 8px;
-  margin-left: 16px;
-  margin-bottom: 16px;
+  margin: 0px 16px;
 `
 
 type AmountInputProps = {
@@ -99,7 +85,6 @@ export const AmountInput = memo(
         </InputWrapper>
 
         <InputSeparator color={isFocus ? theme.palette.accent.primary : ''} />
-        <Chips onChipsTapped={(value) => setInputValue(value)} />
       </Wrapper>
     )
   },

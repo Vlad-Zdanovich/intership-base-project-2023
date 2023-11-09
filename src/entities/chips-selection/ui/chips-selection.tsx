@@ -19,8 +19,7 @@ const ChipsWrapper = styled.TouchableOpacity`
 `
 
 const Chips = styled(Typography)`
-  margin-horizontal: 16px;
-  margin-vertical: 8px;
+  margin: 8px 16px;
 `
 
 type ChipsSelectionProps = {
