@@ -7,7 +7,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { $snackStore, hideTopSnack } from '../model'
 
-const Wrapper = styled.View<{ isShowing: boolean; paddingTop: number }>`
+const Wrapper = styled.View<{
+  isShowing: boolean
+  paddingTop: number
+  color: string
+}>`
   height: 60px;
   flex-direction: row;
   display: ${({ isShowing }) => (isShowing ? 'flex' : 'none')};
@@ -19,7 +23,7 @@ const Wrapper = styled.View<{ isShowing: boolean; paddingTop: number }>`
   right: 8px;
   padding: 0 16px;
   z-index: 10;
-  background-color: #fb6176;
+  background-color: ${({ color }) => color};
   border-radius: 20px;
   box-shadow: 0px 6px 40px rgba(0, 0, 0, 0.3);
 `
@@ -38,11 +42,13 @@ export const SnackConnector = () => {
   const safeArea = useSafeAreaInsets()
   const theme = useTheme()
   const timeout = useRef(0)
+  const [color, setColor] = useState('')
 
   useEffect(() => {
     clearTimeout(timeout.current)
     if (snacks.length) {
       setShowing(true)
+      setColor(getColor())
       timeout.current = setTimeout(() => {
         hideTopSnack()
       }, snacks[0].duration)
@@ -55,8 +61,19 @@ export const SnackConnector = () => {
     hideTopSnack()
   }, [snacks])
 
+  const getColor = () => {
+    switch (snacks[0]?.type) {
+      case 'error':
+        return theme.palette.indicator.error
+      case 'successes':
+        return theme.palette.indicator.done
+      case 'warning':
+        return theme.palette.indicator.done
+    }
+  }
+
   return (
-    <Wrapper isShowing={isShowing} paddingTop={safeArea.top}>
+    <Wrapper color={color} isShowing={isShowing} paddingTop={safeArea.top}>
       <MessageText variant="body15Regular">
         {snacks[0]?.message ?? ''}
       </MessageText>
