@@ -6,9 +6,9 @@ import { Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import { CardItem } from '@entities/card-item'
 import { PhoneInput } from '@entities/phone-input'
 import { AmountInput } from '@entities/amount-input'
-import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { Typography } from '@shared/ui/atoms'
 import { ChipsSelection } from '@entities/chips-selection'
+import { PaymentsNavigationParamsList } from '@screens/payments-screen'
 
 const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};

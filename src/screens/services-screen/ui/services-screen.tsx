@@ -6,8 +6,8 @@ import { useTheme } from '@shared/hooks'
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native'
 import { Service } from '@shared/atoms/payment-type'
 import { useSearchPaymentServices } from '@shared/hooks/use-search-service'
-import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { ServiceItem } from '@entities/service-item'
+import { PaymentsNavigationParamsList } from '@screens/payments-screen'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.primary};

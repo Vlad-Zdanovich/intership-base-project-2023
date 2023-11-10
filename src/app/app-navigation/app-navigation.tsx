@@ -1,93 +1,17 @@
 import React from 'react'
 import { styled } from '@shared/ui/theme'
-import { useTheme } from '@shared/hooks'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { TabsNavigationParamsList } from './types'
-import {
-  IconMainProduct,
-  IconPayment,
-  IconCamera,
-  IconBank,
-} from '@shared/ui/icons'
-import { Typography } from '@shared/ui/atoms'
-import { PaymentsScreenConnector } from '@features/payments-connector'
-import { MainScreen } from '@screens/main-screen'
-import { ATMsScreen } from '@screens/ATMs'
-import { ProfileScreen } from '@screens/profile'
+import { SnackConnector } from '@features/snack-connector'
+import { TabsNavigation } from 'processes/navigation'
 
 const Wrapper = styled.View`
-  background-color: ${({ theme }) => theme.palette.background.primary};
-  justify-content: flex-end;
-  align-items: flex-start;
-  height: 116px;
-  padding-left: 16px;
-  padding-bottom: 8px;
+  flex: 1;
 `
 
-const Tabs = createBottomTabNavigator<TabsNavigationParamsList>()
-
 export const AppNavigation = () => {
-  const theme = useTheme()
-
   return (
-    <Tabs.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: theme.palette.background.primary,
-        },
-        tabBarActiveTintColor: theme.palette.accent.secondary,
-        header: ({ options }) => {
-          return (
-            <Wrapper>
-              <Typography align="left" variant="largeTitle34">
-                {options.title}
-              </Typography>
-            </Wrapper>
-          )
-        },
-      }}
-    >
-      <Tabs.Screen
-        name="MainScreen"
-        component={MainScreen}
-        options={{
-          title: 'Главная',
-          tabBarIcon: ({ color }) => {
-            return <IconMainProduct color={color} />
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="PaymentsScreenConnector"
-        component={PaymentsScreenConnector}
-        options={{
-          title: 'Платежы',
-          headerShown: false,
-          tabBarIcon: ({ color }) => {
-            return <IconPayment color={color} />
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="ATMsScreen"
-        component={ATMsScreen}
-        options={{
-          title: 'Банкоматы',
-          tabBarIcon: ({ color }) => {
-            return <IconBank color={color} />
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{
-          title: 'Профиль',
-          tabBarIcon: ({ color }) => {
-            return <IconCamera color={color} />
-          },
-        }}
-      />
-    </Tabs.Navigator>
+    <Wrapper>
+      <SnackConnector />
+      <TabsNavigation />
+    </Wrapper>
   )
 }

@@ -1,40 +1,27 @@
-import React, { useLayoutEffect } from 'react'
-import { ActivityIndicator, Alert, FlatList } from 'react-native'
+import React from 'react'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { styled } from '@shared/ui/theme'
 import { PaymentType } from '@shared/atoms/payment-type'
-import { useTheme } from '@shared/hooks'
-import { usePaymentTypes } from '@shared/hooks/use-payment-types'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { PaymentsItem } from '@entities/payments-item'
 import { Separator } from '@shared/ui/atoms'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
   flex: 1;
-  align-item: center;
   justify-content: center;
 `
 
-type Props = NativeStackScreenProps<
-  PaymentsNavigationParamsList,
-  'PaymentsScreen'
->
+type PaymentsScreenProps = {
+  paymentTypes: PaymentType[]
+  isLoading: boolean
+  onPaymentItem: (type: PaymentType) => void
+}
 
-export const PaymentsScreen = ({ navigation, route }: Props) => {
-  const { paymentTypes, isLoading, error } = usePaymentTypes()
-  const theme = useTheme()
-
-  useLayoutEffect(() => {
-    if (error) {
-      Alert.prompt(error)
-    }
-  }, [error])
-
-  const onPaymentItem = (type: PaymentType) => {
-    navigation.navigate('ServicesScreen', type)
-  }
-
+export const PaymentsScreen = ({
+  paymentTypes,
+  isLoading,
+  onPaymentItem,
+}: PaymentsScreenProps) => {
   return (
     <Wrapper>
       <FlatList
@@ -42,7 +29,7 @@ export const PaymentsScreen = ({ navigation, route }: Props) => {
         contentContainerStyle={{ paddingBottom: 56, paddingHorizontal: 16 }}
         keyExtractor={(type) => type.category_id}
         renderItem={({ item }) => (
-          <PaymentsItem type={item} onPress={(type) => onPaymentItem(type)} />
+          <PaymentsItem type={item} onPress={onPaymentItem} />
         )}
         ItemSeparatorComponent={() => <Separator />}
         ListHeaderComponent={

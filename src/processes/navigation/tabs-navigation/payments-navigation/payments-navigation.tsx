@@ -1,12 +1,16 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { PaymentsNavigationParamsList } from '../ui/molecules/types'
+
 import { useTheme } from '@shared/hooks'
 import { Typography } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
 import { ServicesScreen } from '@screens/services-screen'
-import { PaymentsScreen } from '@screens/payments-screen'
 import { CreatePaymentScreen } from '@screens/create-payment-screen'
+import {
+  PaymentsNavigationParamsList,
+  PaymentsScreenConnector,
+} from '@screens/payments-screen'
+
 const HeaderWrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
   justify-content: flex-end;
@@ -18,7 +22,7 @@ const HeaderWrapper = styled.View`
 
 const Stack = createNativeStackNavigator<PaymentsNavigationParamsList>()
 
-export const PaymentsScreenConnector = () => {
+export const PaymentsNavigation = () => {
   const theme = useTheme()
 
   return (
@@ -43,7 +47,7 @@ export const PaymentsScreenConnector = () => {
       }}
     >
       <Stack.Screen
-        component={PaymentsScreen}
+        component={PaymentsScreenConnector}
         name="PaymentsScreen"
         options={() => ({
           header: () => (
