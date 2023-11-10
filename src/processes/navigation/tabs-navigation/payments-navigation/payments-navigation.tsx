@@ -10,6 +10,7 @@ import {
   PaymentsNavigationParamsList,
   PaymentsScreenConnector,
 } from '@screens/payments-screen'
+import { ServicesScreenConnector } from '@screens/services-screen/services-screen-connector'
 
 const HeaderWrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
@@ -60,10 +61,10 @@ export const PaymentsNavigation = () => {
         })}
       />
       <Stack.Screen
-        component={ServicesScreen}
+        component={ServicesScreenConnector}
         name="ServicesScreen"
         options={({ route }) => ({
-          title: route.params.category_name,
+          title: route.params.title,
           headerBackTitleVisible: false,
         })}
       />

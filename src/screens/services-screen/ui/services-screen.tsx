@@ -4,10 +4,8 @@ import { styled } from '@shared/ui/theme'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTheme } from '@shared/hooks'
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native'
-import { Service } from '@shared/atoms/payment-type'
-import { useSearchPaymentServices } from '@shared/hooks/use-search-service'
 import { ServiceItem } from '@entities/service-item'
-import { PaymentsNavigationParamsList } from '@screens/payments-screen'
+import { Service } from '@shared/api'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.primary};
@@ -20,20 +18,20 @@ const SearchBarWrapper = styled.View`
   height: 36px;
 `
 
-type Props = NativeStackScreenProps<
-  PaymentsNavigationParamsList,
-  'ServicesScreen'
->
+type ServicesScreenProps = {
+  filteredServices: Service[]
+  searchText: string
+  setSearchText: React.Dispatch<React.SetStateAction<string>>
+  onServiceTapped: (service: Service) => void
+}
 
-export const ServicesScreen = ({ navigation, route }: Props) => {
-  const { services } = route.params
+export const ServicesScreen = ({
+  filteredServices,
+  searchText,
+  setSearchText,
+  onServiceTapped,
+}: ServicesScreenProps) => {
   const theme = useTheme()
-  const { filteredServices, searchText, setSearchText } =
-    useSearchPaymentServices(services)
-
-  function onServiceTapped(service: Service) {
-    navigation.navigate('CreatePaymentScreen', service)
-  }
 
   return (
     <KeyboardAvoidingView

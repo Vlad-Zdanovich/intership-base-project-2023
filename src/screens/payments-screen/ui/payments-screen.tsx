@@ -1,9 +1,9 @@
 import React from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 import { styled } from '@shared/ui/theme'
-import { PaymentType } from '@shared/atoms/payment-type'
 import { PaymentsItem } from '@entities/payments-item'
 import { Separator } from '@shared/ui/atoms'
+import { PaymentType } from '@shared/api'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};

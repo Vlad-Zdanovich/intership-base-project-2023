@@ -1,7 +1,12 @@
-import { PaymentType, Service } from "@shared/atoms/payment-type"
+import { Service } from "@shared/api"
+
+type ServicesScreenProps = {
+    title: string,
+    paymentsId: string
+}
 
 export type PaymentsNavigationParamsList = {
     PaymentsScreen: undefined
-    ServicesScreen: PaymentType
+    ServicesScreen: ServicesScreenProps
     CreatePaymentScreen: Service
 }

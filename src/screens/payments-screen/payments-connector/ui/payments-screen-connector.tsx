@@ -1,11 +1,9 @@
 import React, { useEffect, useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { PaymentsScreen } from '@screens/payments-screen'
-import { showSnack } from '@features/snack-connector'
 import { PaymentsNavigationParamsList } from '..'
 import { usePaymentTypes } from '@features/payment-type/lib/use-payment-types'
 import { PaymentType } from '@shared/api'
-import { fetchPaymentsFx } from '@features/payment-type/lib'
+import { PaymentsScreen } from '../../ui'
 
 type Props = NativeStackScreenProps<
   PaymentsNavigationParamsList,
@@ -16,7 +14,10 @@ export const PaymentsScreenConnector = ({ navigation, route }: Props) => {
   const { paymentTypes, isLoading } = usePaymentTypes()
 
   const onPaymentItem = (type: PaymentType) => {
-    navigation.navigate('ServicesScreen', type)
+    navigation.navigate('ServicesScreen', {
+      title: type.category_name,
+      paymentsId: type.category_id,
+    })
   }
 
   return (
