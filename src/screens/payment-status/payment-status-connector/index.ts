@@ -1,0 +1,1 @@
+export { PaymentsStatusConnector } from './ui'

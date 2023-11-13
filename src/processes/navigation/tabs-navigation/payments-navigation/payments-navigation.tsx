@@ -1,16 +1,15 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
 import { useTheme } from '@shared/hooks'
 import { Typography } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
-import { ServicesScreen } from '@screens/services-screen'
-import { CreatePaymentScreen } from '@screens/create-payment-screen'
 import {
   PaymentsNavigationParamsList,
   PaymentsScreenConnector,
 } from '@screens/payments-screen'
 import { ServicesScreenConnector } from '@screens/services-screen/services-screen-connector'
+import { CreatePaymentConnector } from '@screens/create-payment-screen/create-payment-connector/ui/create-payment-connector'
+import { PaymentsStatusConnector } from '@screens/payment-status'
 
 const HeaderWrapper = styled.View`
   background-color: ${({ theme }) => theme.palette.background.primary};
@@ -69,9 +68,14 @@ export const PaymentsNavigation = () => {
         })}
       />
       <Stack.Screen
-        component={CreatePaymentScreen}
+        component={CreatePaymentConnector}
         name="CreatePaymentScreen"
-        options={({ route }) => ({ title: route.params.service_name })}
+        options={({ route }) => ({ title: route.params.title })}
+      />
+      <Stack.Screen
+        component={PaymentsStatusConnector}
+        name="PaymentStatus"
+        options={() => ({ headerShown: false })}
       />
     </Stack.Navigator>
   )

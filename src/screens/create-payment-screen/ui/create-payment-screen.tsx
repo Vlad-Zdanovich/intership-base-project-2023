@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react'
+import React, { Dispatch, useCallback, useLayoutEffect, useState } from 'react'
 import { styled } from '@shared/ui/theme'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTheme } from '@shared/hooks'
@@ -38,31 +38,23 @@ const SubmitButton = styled(Typography)`
   color: ${({ theme }) => theme.palette.text.primary};
 `
 
-type CreatePaymentScreenProps = NativeStackScreenProps<
-  PaymentsNavigationParamsList,
-  'CreatePaymentScreen'
->
+type CreatePaymentScreenProps = {
+  icon: string
+  phone: string
+  amount: number
+  setPhone: Dispatch<React.SetStateAction<string>>
+  setAmount: Dispatch<React.SetStateAction<number>>
+  onSubmitButtonTapped: () => void
+}
 
-export const CreatePaymentScreen = ({ route }: CreatePaymentScreenProps) => {
-  const [phone, setPhone] = useState('')
-  const [amount, setAmount] = useState(0)
-
-  const onSubmitButtonTapped = useCallback(() => {
-    if (amount > 1 && amount < 20000 && phone.length == 17) {
-      showSnack({
-        type: 'successes',
-        message: 'Успех',
-        duration: 3000,
-      })
-    } else {
-      showSnack({
-        type: 'error',
-        message: 'Проверьте введенные данные',
-        duration: 3000,
-      })
-    }
-  }, [amount, phone])
-
+export const CreatePaymentScreen = ({
+  icon,
+  phone,
+  amount,
+  setPhone,
+  setAmount,
+  onSubmitButtonTapped,
+}: CreatePaymentScreenProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -75,11 +67,7 @@ export const CreatePaymentScreen = ({ route }: CreatePaymentScreenProps) => {
           name="Карта зарплатная"
           value="457 334,00 ₽"
         />
-        <PhoneInput
-          icon={route.params.service_icon}
-          phone={phone}
-          setPhone={setPhone}
-        />
+        <PhoneInput icon={icon} phone={phone} setPhone={setPhone} />
         <AmountInput inputValue={amount} setInputValue={setAmount} />
         <ChipsWrapper>
           <Chips onChipsTapped={(value) => setAmount(value)} />

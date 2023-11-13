@@ -54,7 +54,6 @@ type AmountInputProps = {
 
 export const AmountInput = memo(
   ({ inputValue, setInputValue }: AmountInputProps) => {
-    console.log('AmountInput')
     const [isFocus, setIsFocus] = useState(false)
     const theme = useTheme()
 

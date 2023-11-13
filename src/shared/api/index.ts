@@ -1,2 +1,2 @@
-export type { PaymentType, PaymentTypeResponse, Service } from './payments-type'
-export { getPaymentsType } from './payments-type'
+export type { PaymentType, PaymentTypeResponse, Service, PaymentOperatorResponse, PaymentOperationStatus } from './payments-type'
+export { getPaymentsType, getPaymentOperator, postPaymentOperation } from './payments-type'

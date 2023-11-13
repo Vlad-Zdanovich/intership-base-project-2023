@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '..'
 import { usePaymentTypes } from '@features/payment-type/lib/use-payment-types'
@@ -22,7 +22,7 @@ export const PaymentsScreenConnector = ({ navigation, route }: Props) => {
 
   return (
     <PaymentsScreen
-      paymentTypes={paymentTypes}
+      paymentTypes={paymentTypes ?? []}
       isLoading={isLoading}
       onPaymentItem={onPaymentItem}
     />

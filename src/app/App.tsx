@@ -6,6 +6,7 @@ import { AppNavigation } from '@app/app-navigation'
 import { AppThemeProvider, styled } from '@shared/ui/theme'
 
 import { Storybook } from '../../.storybook'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const StorybookButton = styled.TouchableOpacity`
   height: 32px;
@@ -21,6 +22,8 @@ const StorybookButtonText = styled.Text`
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
 `
+
+const queryClient = new QueryClient()
 
 export const App = () => {
   const [isStorybookVisible, setIsStorybookVisible] = React.useState(false)
@@ -52,11 +55,13 @@ export const App = () => {
   return (
     <StrictMode>
       <AppThemeProvider>
-        <NavigationContainer>
-          <SafeAreaProvider>
-            <AppNavigation />
-          </SafeAreaProvider>
-        </NavigationContainer>
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer>
+            <SafeAreaProvider>
+              <AppNavigation />
+            </SafeAreaProvider>
+          </NavigationContainer>
+        </QueryClientProvider>
       </AppThemeProvider>
     </StrictMode>
   )
