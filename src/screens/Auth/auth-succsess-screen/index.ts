@@ -1,0 +1,1 @@
+export { AuthSuccsessScreen } from './ui'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { SnackConnector } from '@features/snack-connector'
-import { TabsNavigation } from 'processes/navigation'
+import { AuthNavigation, TabsNavigation } from 'processes/navigation'
 import axios from 'axios'
 
 const Wrapper = styled.View`
@@ -9,10 +9,12 @@ const Wrapper = styled.View`
 `
 
 export const AppNavigation = () => {
+  const isAuth = false
+
   return (
     <Wrapper>
       <SnackConnector />
-      <TabsNavigation />
+      {isAuth ? <TabsNavigation /> : <AuthNavigation />}
     </Wrapper>
   )
 }

@@ -1,5 +1,3 @@
-import { Service } from "@shared/api"
-
 type ServicesScreenProps = {
     title: string,
     paymentsId: string
