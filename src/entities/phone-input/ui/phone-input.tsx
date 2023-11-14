@@ -1,17 +1,11 @@
-import React, { Dispatch, SetStateAction, memo, useState } from 'react'
+import React, { Dispatch, SetStateAction, memo, ReactNode } from 'react'
+import { Image } from 'react-native'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 import MaskInput from 'react-native-mask-input'
 import { PHONE_MASK } from '@shared/atoms'
 
 const Wrapper = styled.View`
-  background: ${({ theme }) => theme.palette.background.secondary};
-  height: 116px;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`
-
-const InputWrapper = styled.View`
   background: ${({ theme }) => theme.palette.content.primary};
   flex: 1;
   flex-direction: row;
@@ -21,7 +15,7 @@ const InputWrapper = styled.View`
   border-radius: 26px;
 `
 
-const Icon = styled.Image`
+const IconWapper = styled.View`
   height: 24px;
   width: 24px;
   margin-left: 16px;
@@ -41,7 +35,7 @@ const PhoneInputView = styled(MaskInput)`
 `
 
 type CardItemProps = {
-  icon: string
+  icon: string | ReactNode
   phone: string
   setPhone: Dispatch<SetStateAction<string>>
 }
@@ -51,19 +45,20 @@ export const PhoneInput = memo(({ icon, phone, setPhone }: CardItemProps) => {
 
   return (
     <Wrapper>
-      <InputWrapper>
-        <Icon source={{ uri: icon }} />
-        <PhoneInputView
-          value={phone}
-          onChangeText={(masked: string) => {
-            setPhone(masked)
-          }}
-          keyboardType="phone-pad"
-          placeholder="Номер телефона"
-          placeholderTextColor={theme.palette.text.tertiary}
-          mask={PHONE_MASK}
-        />
-      </InputWrapper>
+      <IconWapper>
+        {typeof icon === 'string' ? <Image source={{ uri: icon }} /> : icon}
+      </IconWapper>
+
+      <PhoneInputView
+        value={phone}
+        onChangeText={(masked: string) => {
+          setPhone(masked)
+        }}
+        keyboardType="phone-pad"
+        placeholder="Номер телефона"
+        placeholderTextColor={theme.palette.text.tertiary}
+        mask={PHONE_MASK}
+      />
     </Wrapper>
   )
 })

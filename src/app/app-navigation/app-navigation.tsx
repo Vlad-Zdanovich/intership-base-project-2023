@@ -2,7 +2,6 @@ import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { SnackConnector } from '@features/snack-connector'
 import { AuthNavigation, TabsNavigation } from 'processes/navigation'
-import axios from 'axios'
 
 const Wrapper = styled.View`
   flex: 1;

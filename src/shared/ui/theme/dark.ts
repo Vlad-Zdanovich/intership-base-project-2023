@@ -111,6 +111,12 @@ export const darkTheme = {
       letterSpacing: '-0.41px',
       fontFamily: 'SF_PRO_SEMIBOLD_600',
     },
+    keyboardButton: {
+      size: '34px',
+      lineHeight: '41px',
+      letterSpacing: '0.41px',
+      fontFamily: 'SF_PRO_REGULAR_400',
+    }
   },
   spacing: (multiplier: number) => THEME_GRID_STEP * multiplier,
 }
