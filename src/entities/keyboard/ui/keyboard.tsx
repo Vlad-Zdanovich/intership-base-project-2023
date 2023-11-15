@@ -2,7 +2,7 @@ import { styled } from '@shared/ui/theme'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Animated, Easing } from 'react-native'
 import { useCallback, useEffect, useMemo } from 'react'
-import { TKeyboardButton, TKeyboardPress } from '../lib'
+import { TKeyboardButton, TKeyboardPress, useHeightAnimation } from '../lib'
 import { KeyboardRow } from '../keyboard-row'
 import { KeyboardButton } from '../keyboard-button'
 
@@ -27,34 +27,11 @@ const Wrapper = styled(Animated.View)<{
 
 export const Keyboard = ({ buttonList, isShowing, onKeyPress }: Props) => {
   const { bottom } = useSafeAreaInsets()
-
-  const heightValue = useMemo(() => new Animated.Value(0), [])
-
-  const height = useCallback(() => {
-    Animated.timing(heightValue, {
-      toValue: isShowing ? 0 : 1,
-      duration: 300,
-      easing: Easing.ease,
-      useNativeDriver: false,
-    }).start()
-  }, [heightValue, isShowing])
-
-  const heightProp = useMemo(
-    () =>
-      heightValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, -300],
-      }),
-    [heightValue, isShowing],
-  )
-
-  useEffect(() => {
-    height()
-  }, [isShowing])
+  const { height } = useHeightAnimation({ toValue: -300, isShowing })
 
   return (
     <Wrapper
-      style={{ bottom: heightProp }}
+      style={{ bottom: height }}
       isShowing={isShowing}
       bottomPadding={bottom}
     >

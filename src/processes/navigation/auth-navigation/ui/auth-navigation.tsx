@@ -3,7 +3,7 @@ import {
   AuthSuccsessScreen,
   AuthOTPScreen,
   AuthPasswordInputScreen,
-  AuthPhoneInputScreen,
+  AuthPhoneInputConnector,
 } from '@screens/Auth'
 import { AuthNavigationParamsList } from '../model/auth-navigation-params-list'
 
@@ -17,7 +17,7 @@ export const AuthNavigation = () => {
       }}
     >
       <Stack.Screen
-        component={AuthPhoneInputScreen}
+        component={AuthPhoneInputConnector}
         name="AuthPhoneInputScreen"
       />
       <Stack.Screen component={AuthOTPScreen} name="AuthOTPScreen" />

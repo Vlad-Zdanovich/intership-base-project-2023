@@ -1,13 +1,20 @@
-import { Keyboard } from '@entities/keyboard'
+import { Keyboard, TKeyboardPress } from '@entities/keyboard'
 import { PhoneInput } from '@entities/phone-input'
 import { Typography } from '@shared/ui/atoms'
 import { IconLogoMedium, IconPhone } from '@shared/ui/icons'
 import { styled } from '@shared/ui/theme'
-import { useCallback, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { usePaddingAnimate } from '../lib'
+import { Animated } from 'react-native'
 
-const Wrapper = styled.View<{ isInputFocused: boolean }>`
-  padding-bottom: ${({ isInputFocused }) => (isInputFocused ? 300 : 0)}px;
+const Wrapper = styled(Animated.View)`
   background: ${({ theme }) => theme.palette.background.primary};
+  flex: 1;
+`
+
+const PhoneAuthWrapper = styled.View`
+  justify-content: space-between;
+  padding: 16px;
   flex: 1;
 `
 
@@ -22,7 +29,7 @@ const ButtonWrapper = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 26px;
   height: 52px;
-  margin: 0px 16px;
+  margin: 16px 16px;
 `
 
 const LogoWrapper = styled.View`
@@ -34,31 +41,46 @@ const SubmitButton = styled(Typography)`
   color: ${({ theme }) => theme.palette.text.primary};
 `
 
-export const AuthPhoneInputScreen = () => {
-  const [phone, setPhone] = useState('')
-  const [isFocused, setIsFocused] = useState(false)
+type AuthPhoneInputScreenProps = {
+  phone: string
+  isFocused: boolean
+  setPhone: Dispatch<SetStateAction<string>>
+  setFocus: Dispatch<SetStateAction<boolean>>
+  onKeyPress: TKeyboardPress
+  onSubmitButtonTapped: () => void
+}
 
-  const onSubmitButtonTapped = useCallback(() => {
-    setIsFocused(!isFocused)
-  }, [setIsFocused, isFocused])
+export const AuthPhoneInputScreen = ({
+  phone,
+  isFocused,
+  setPhone,
+  setFocus,
+  onKeyPress,
+  onSubmitButtonTapped,
+}: AuthPhoneInputScreenProps) => {
+  const { padding } = usePaddingAnimate({ toValue: 300, isShowing: !isFocused })
 
   return (
-    <Wrapper isInputFocused={isFocused}>
-      <LogoWrapper>
-        <IconLogoMedium />
-      </LogoWrapper>
-      <InputWrapper>
-        <PhoneInput
-          icon={<IconPhone color="#6C78E6" />}
-          phone={phone}
-          setPhone={setPhone}
-        />
-      </InputWrapper>
-      <ButtonWrapper onPress={onSubmitButtonTapped}>
-        <SubmitButton variant="button" align="center">
-          Продолжить
-        </SubmitButton>
-      </ButtonWrapper>
+    <Wrapper style={{ paddingBottom: padding }}>
+      <PhoneAuthWrapper>
+        <LogoWrapper>
+          <IconLogoMedium />
+        </LogoWrapper>
+        <InputWrapper>
+          <PhoneInput
+            icon={<IconPhone color="#6C78E6" />}
+            phone={phone}
+            isFocused={isFocused}
+            setPhone={setPhone}
+            setFocus={setFocus}
+          />
+        </InputWrapper>
+        <ButtonWrapper onPress={onSubmitButtonTapped}>
+          <SubmitButton variant="button" align="center">
+            Продолжить
+          </SubmitButton>
+        </ButtonWrapper>
+      </PhoneAuthWrapper>
       <Keyboard
         buttonList={[
           [{ value: '1' }, { value: '2' }, { value: '3' }],
@@ -71,7 +93,7 @@ export const AuthPhoneInputScreen = () => {
           ],
         ]}
         isShowing={isFocused}
-        onKeyPress={() => {}}
+        onKeyPress={onKeyPress}
       />
     </Wrapper>
   )
