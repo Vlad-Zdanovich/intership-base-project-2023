@@ -1,12 +1,27 @@
 import { TKeyboardButton } from '@entities/keyboard'
-import { useState, useCallback, useEffect } from 'react'
+import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { OTPCodeResponse } from '@shared/api/otp/model'
+import { useState, useCallback } from 'react'
 import { AuthPhoneInputScreen } from '../../ui'
+import { useValideOTP } from '../lib'
 
-export const AuthPhoneInputConnector = () => {
+type Props = NativeStackScreenProps<
+  AuthNavigationParamsList,
+  'AuthPhoneInputScreen'
+>
+
+export const AuthPhoneInputConnector = ({ navigation }: Props) => {
   const [phone, setPhone] = useState('')
   const [isFocused, setIsFocused] = useState(false)
+  const { onSend, isLoading } = useValideOTP({
+    phone: phone,
+    onSuccess: (data) => onSuccessSendOTP(data),
+  })
 
-  const onSubmitButtonTapped = useCallback(() => {}, [])
+  const onSuccessSendOTP = useCallback((data: OTPCodeResponse) => {
+    navigation.navigate('AuthOTPScreen')
+  }, [])
 
   const onKeyPress = useCallback(
     (keyboardButton: TKeyboardButton) => {
@@ -25,18 +40,15 @@ export const AuthPhoneInputConnector = () => {
     [setPhone, phone],
   )
 
-  useEffect(() => {
-    console.log(isFocused)
-  }, [isFocused])
-
   return (
     <AuthPhoneInputScreen
       phone={phone}
-      setPhone={setPhone}
       isFocused={isFocused}
+      isLoading={isLoading}
+      setPhone={setPhone}
       setFocus={setIsFocused}
       onKeyPress={onKeyPress}
-      onSubmitButtonTapped={onSubmitButtonTapped}
+      onSubmitButtonTapped={onSend}
     />
   )
 }

@@ -1,6 +1,6 @@
 import { Keyboard, TKeyboardPress } from '@entities/keyboard'
 import { PhoneInput } from '@entities/phone-input'
-import { Typography } from '@shared/ui/atoms'
+import { Loader, Typography } from '@shared/ui/atoms'
 import { IconLogoMedium, IconPhone } from '@shared/ui/icons'
 import { styled } from '@shared/ui/theme'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
@@ -44,6 +44,7 @@ const SubmitButton = styled(Typography)`
 type AuthPhoneInputScreenProps = {
   phone: string
   isFocused: boolean
+  isLoading: boolean
   setPhone: Dispatch<SetStateAction<string>>
   setFocus: Dispatch<SetStateAction<boolean>>
   onKeyPress: TKeyboardPress
@@ -53,6 +54,7 @@ type AuthPhoneInputScreenProps = {
 export const AuthPhoneInputScreen = ({
   phone,
   isFocused,
+  isLoading,
   setPhone,
   setFocus,
   onKeyPress,
@@ -73,6 +75,7 @@ export const AuthPhoneInputScreen = ({
             isFocused={isFocused}
             setPhone={setPhone}
             setFocus={setFocus}
+            rightItem={isLoading ? <Loader /> : null}
           />
         </InputWrapper>
         <ButtonWrapper onPress={onSubmitButtonTapped}>

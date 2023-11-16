@@ -1,0 +1,1 @@
+export { useOTP } from "./model"
