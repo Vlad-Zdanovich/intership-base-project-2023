@@ -27,6 +27,7 @@
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
+      "@processes/*": ["processes/*"],
       "@ui/*": ["ui/*"],
     },
     "types": [

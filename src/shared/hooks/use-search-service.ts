@@ -1,4 +1,4 @@
-import { Service } from "@shared/atoms/payment-type"
+import { Service } from "@shared/api"
 import { useMemo, useState } from "react"
 
 export const useSearchPaymentServices = (services: Service[]) => {

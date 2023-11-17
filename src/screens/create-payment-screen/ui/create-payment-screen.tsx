@@ -6,9 +6,10 @@ import { Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import { CardItem } from '@entities/card-item'
 import { PhoneInput } from '@entities/phone-input'
 import { AmountInput } from '@entities/amount-input'
-import { PaymentsNavigationParamsList } from '@features/payments-connector'
 import { Typography } from '@shared/ui/atoms'
 import { ChipsSelection } from '@entities/chips-selection'
+import { PaymentsNavigationParamsList } from '@screens/payments-screen'
+import { showSnack } from '@entities/snack-connector'
 
 const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};
@@ -48,9 +49,17 @@ export const CreatePaymentScreen = ({ route }: CreatePaymentScreenProps) => {
 
   const onSubmitButtonTapped = useCallback(() => {
     if (amount > 1 && amount < 20000 && phone.length == 17) {
-      Alert.alert('Успех')
+      showSnack({
+        type: 'successes',
+        message: 'Успех',
+        duration: 3000,
+      })
     } else {
-      Alert.alert('Ошибка', 'Проверьте введенные данные')
+      showSnack({
+        type: 'error',
+        message: 'Проверьте введенные данные',
+        duration: 3000,
+      })
     }
   }, [amount, phone])
 

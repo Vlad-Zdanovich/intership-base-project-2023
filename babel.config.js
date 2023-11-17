@@ -21,6 +21,7 @@ module.exports = {
           '@features': './src/features',
           '@screens': './src/screens',
           '@shared': './src/shared',
+          '@processes': './src/processes',
           '@ui': './src/ui',
         },
       },
