@@ -20,7 +20,7 @@ export const AuthPhoneInputConnector = ({ navigation }: Props) => {
   })
 
   const onSuccessSendOTP = useCallback((data: OTPCodeResponse) => {
-    navigation.navigate('AuthOTPScreen')
+    navigation.navigate('AuthOTPScreen', data)
   }, [])
 
   const onKeyPress = useCallback(

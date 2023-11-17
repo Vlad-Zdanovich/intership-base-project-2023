@@ -1,7 +1,6 @@
 import { styled } from '@shared/ui/theme'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Animated, Easing } from 'react-native'
-import { useCallback, useEffect, useMemo } from 'react'
+import { Animated } from 'react-native'
 import { TKeyboardButton, TKeyboardPress, useHeightAnimation } from '../lib'
 import { KeyboardRow } from '../keyboard-row'
 import { KeyboardButton } from '../keyboard-button'

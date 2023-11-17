@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
   AuthSuccsessScreen,
-  AuthOTPScreen,
+  AuthOTPConnector,
   AuthPasswordInputScreen,
   AuthPhoneInputConnector,
 } from '@screens/Auth'
@@ -20,7 +20,7 @@ export const AuthNavigation = () => {
         component={AuthPhoneInputConnector}
         name="AuthPhoneInputScreen"
       />
-      <Stack.Screen component={AuthOTPScreen} name="AuthOTPScreen" />
+      <Stack.Screen component={AuthOTPConnector} name="AuthOTPScreen" />
       <Stack.Screen
         component={AuthPasswordInputScreen}
         name="AuthPasswordInputScreen"
