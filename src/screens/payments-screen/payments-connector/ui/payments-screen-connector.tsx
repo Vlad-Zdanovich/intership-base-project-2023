@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '..'
-import { usePaymentTypes } from '@features/payment-type/lib/use-payment-types'
+import { usePaymentTypes } from '@features/payment-type/model/use-payment-types'
 import { PaymentType } from '@shared/api'
 import { PaymentsScreen } from '../../ui'
 
