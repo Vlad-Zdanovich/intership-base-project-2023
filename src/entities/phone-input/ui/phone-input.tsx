@@ -7,7 +7,8 @@ import { PHONE_MASK } from '@shared/atoms'
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
   height: 116px;
-  margin-vertical: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 `
 
 const InputWrapper = styled.View`
@@ -17,19 +18,20 @@ const InputWrapper = styled.View`
   justify-content: flex-start;
   align-items: center;
   margin: 24px 14px;
-  padding-horizontal: 16px;
   border-radius: 26px;
 `
 
 const Icon = styled.Image`
   height: 24px;
   width: 24px;
+  margin-left: 16px;
   border-radius: 12px;
 `
 
 const PhoneInputView = styled(MaskInput)`
   color: ${({ theme }) => theme.palette.text.primary};
-  padding-horizontal: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   font-family: SF Pro Text;
   font-size: 15px;
   font-style: normal;
@@ -45,7 +47,6 @@ type CardItemProps = {
 }
 
 export const PhoneInput = memo(({ icon, phone, setPhone }: CardItemProps) => {
-  console.log('PhoneInput')
   const theme = useTheme()
 
   return (

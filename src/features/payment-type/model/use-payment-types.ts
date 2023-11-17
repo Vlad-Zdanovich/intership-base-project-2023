@@ -1,20 +1,29 @@
-import { useStore } from "effector-react"
-import { useEffect, useState } from "react"
-import { $paymentsStore, fetchPaymentsFx, $lastRefreshDate } from "./store"
+import { showSnack } from "@entities/snack-connector"
+import { getPaymentsType, PaymentType } from "@shared/api"
+import { useEffect } from "react"
+import { useQuery } from "react-query"
 
+const PAYMENT_CATEGORIES_KEY = "paymentCategories"
 const MS_IN_DAY = 24 * 60 * 60 * 1000
 
 export const usePaymentTypes = () => {
-    const paymentTypes = useStore($paymentsStore)
-    const isLoading = useStore(fetchPaymentsFx.pending)
-    const lastRefreshDate = useStore($lastRefreshDate)
+    const {
+        data,
+        error,
+        isError,
+        isLoading
+      } = useQuery<any, any, PaymentType[]>({
+        queryKey: [PAYMENT_CATEGORIES_KEY],
+        queryFn: () => getPaymentsType(),
+        staleTime: MS_IN_DAY,
+        onError: () => {
+          showSnack({
+            type: 'error',
+            message: error.message,
+            duration: 3000,
+          })
+        }
+      })
 
-
-    useEffect(() => {
-    if (Date.now() - lastRefreshDate >= MS_IN_DAY) {
-        fetchPaymentsFx()
-    }   
-    }, []) 
-
-    return {paymentTypes, isLoading}
+    return {paymentTypes: data, isLoading}
 }

@@ -24,7 +24,7 @@ $lastRefreshDate.on($paymentsStore, _ => Date.now())
 sample({
     clock: fetchPaymentsFx.doneData,
     source: $paymentsStore,
-    fn: (_, clock) => clock?.category ?? [],
+    fn: (_, clock) => clock ?? [],
     target: $paymentsStore
 })
 

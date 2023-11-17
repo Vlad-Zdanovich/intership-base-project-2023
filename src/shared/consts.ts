@@ -1,5 +1,5 @@
-export const PAYMENTS_CATEGORIES_PATH = 'https://github.com/kode-frontend/files/raw/main/categories.json'
-export const defaultErrorMessage = 'Oops! Something went wrong!'
+export const PAYMENTS_CATEGORIES_PATH = '/core/payment/list'
+export const PAYMENT_OPERATOR_PATH = (service_id: string) => `/core/payment/${service_id}`
 
 export const paths = {
   characters: 'character',
