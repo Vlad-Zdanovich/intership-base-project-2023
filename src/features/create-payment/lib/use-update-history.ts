@@ -2,11 +2,9 @@ import { postPaymentOperation } from "@shared/api/"
 import { useMutation } from "react-query"
 
 export const useUpdateHistory = () => {
-    const { mutate } = useMutation({
+    const mutation = useMutation({
         mutationFn: postPaymentOperation
     })
 
-    return {
-        updateHistory: mutate
-    }
+    return mutation
 }

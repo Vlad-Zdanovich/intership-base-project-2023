@@ -64,7 +64,9 @@ const AmountText = styled(Typography)`
   margin-top: 8px;
 `
 
-const DoneButton = styled(PrimaryButton)``
+const DoneButton = styled(PrimaryButton)`
+  margin-bottom: 16px;
+`
 
 type PaymentStatusProps = {
   amount: number
