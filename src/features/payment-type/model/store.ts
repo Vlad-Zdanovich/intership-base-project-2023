@@ -1,4 +1,4 @@
-import { showSnack } from "@features/snack-connector";
+import { showSnack } from "@entities/snack-connector";
 import { getPaymentsType, PaymentType } from "@shared/api";
 import { storageAdapter } from "@shared/lib";
 import { createEffect, createStore, sample } from "effector";

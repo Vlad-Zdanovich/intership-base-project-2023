@@ -9,7 +9,7 @@ import { AmountInput } from '@entities/amount-input'
 import { Typography } from '@shared/ui/atoms'
 import { ChipsSelection } from '@entities/chips-selection'
 import { PaymentsNavigationParamsList } from '@screens/payments-screen'
-import { showSnack } from '@features/snack-connector'
+import { showSnack } from '@entities/snack-connector'
 
 const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};
