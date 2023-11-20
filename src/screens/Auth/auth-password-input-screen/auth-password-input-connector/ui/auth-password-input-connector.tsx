@@ -28,14 +28,15 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
           password: password,
         },
         {
-          onSuccess: () => {
-            navigation.navigate('AuthSuccsessScreen')
+          onSuccess: (data) => {
+            navigation.navigate('AuthSuccsessScreen', {
+              isSuccess: true,
+              accessToken: data.accessToken,
+            })
           },
           onError: () => {
-            showSnack({
-              type: 'error',
-              message: 'Кто-то что-то сломал',
-              duration: 3000,
+            navigation.navigate('AuthSuccsessScreen', {
+              isSuccess: false,
             })
           },
         },

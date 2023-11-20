@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
-  AuthSuccsessScreen,
+  AuthSuccessConnector,
   AuthOTPConnector,
   AuthPasswordInputConnector,
   AuthPhoneInputConnector,
@@ -25,7 +25,10 @@ export const AuthNavigation = () => {
         component={AuthPasswordInputConnector}
         name="AuthPasswordInputScreen"
       />
-      <Stack.Screen component={AuthSuccsessScreen} name="AuthSuccsessScreen" />
+      <Stack.Screen
+        component={AuthSuccessConnector}
+        name="AuthSuccsessScreen"
+      />
     </Stack.Navigator>
   )
 }

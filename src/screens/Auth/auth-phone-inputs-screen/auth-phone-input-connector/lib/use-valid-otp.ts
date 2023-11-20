@@ -16,14 +16,7 @@ export const useValideOTP = ({ phone, onSuccess }: Props) => {
           getOTPCode(
             { phone: phone },
             {
-              onSuccess: (data) => {
-                showSnack({
-                  type: 'successes',
-                  message: 'Успешный успех',
-                  duration: 3000,
-                })
-                onSuccess(data)
-              },
+              onSuccess: onSuccess,
               onError: () => {
                 showSnack({
                   type: 'error',
