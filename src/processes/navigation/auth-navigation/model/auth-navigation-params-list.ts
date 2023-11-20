@@ -1,8 +1,6 @@
-import { OTPCodeResponse } from "@shared/api/otp/model"
-
 export type AuthNavigationParamsList = {
     AuthPhoneInputScreen: undefined
-    AuthOTPScreen: OTPCodeResponse
+    AuthOTPScreen: undefined
     AuthPasswordInputScreen: undefined
-    AutnSuccsessScreen: undefined
+    AuthSuccsessScreen: undefined
 }

@@ -1,0 +1,1 @@
+export { postConfirmAuth } from './model'

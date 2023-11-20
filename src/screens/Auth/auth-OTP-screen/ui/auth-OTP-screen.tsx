@@ -20,19 +20,42 @@ const Title = styled(Typography)`
   padding-bottom: 16px;
 `
 
+const ErrorMessage = styled(Typography)`
+  color: ${({ theme }) => theme.palette.indicator.error};
+  padding: 16px;
+`
+
 type Props = {
   otpCode: string
+  timeButtonText: string
+  isTimeExpired: boolean
+  errorMessage: string
+  isValid: boolean
+  otpLen: number
   onKeyPress: TKeyboardPress
 }
 
-export const AuthOTPScreen = ({ otpCode, onKeyPress }: Props) => {
+export const AuthOTPScreen = ({
+  otpCode,
+  timeButtonText,
+  isTimeExpired,
+  errorMessage,
+  isValid,
+  otpLen,
+  onKeyPress,
+}: Props) => {
   return (
     <Wrapper>
       <InputWrapper>
         <Title variant="body15Regular" align="center">
           На ваш номер отправлено SMS с кодом подтверждения.
         </Title>
-        <OTPInputs otpCode={otpCode} otpLen={4} isValid={true} />
+        <OTPInputs otpCode={otpCode} otpLen={otpLen} isValid={isValid} />
+        {!isValid ? (
+          <ErrorMessage variant="caption2" align="center">
+            {errorMessage}
+          </ErrorMessage>
+        ) : null}
       </InputWrapper>
       <Keyboard
         buttonList={[
@@ -40,7 +63,7 @@ export const AuthOTPScreen = ({ otpCode, onKeyPress }: Props) => {
           [{ value: '4' }, { value: '5' }, { value: '6' }],
           [{ value: '7' }, { value: '8' }, { value: '9' }],
           [
-            { value: `Повторить через ${'2:59'}`, type: 'cancel' },
+            { value: timeButtonText, type: 'timer' },
             { value: '0' },
             { type: 'delete' },
           ],

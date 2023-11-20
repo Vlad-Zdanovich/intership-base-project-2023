@@ -39,9 +39,10 @@ export const KeyboardButton = ({
       {type === 'delete' && (
         <StyledIconDelete size={24} color={theme.palette.text.primary} />
       )}
-      {(type === 'default' || type === 'cancel') && (
+      {(type === 'default' || type === 'cancel' || type === 'timer') && (
         <ButtonText
           variant={type === 'default' ? 'keyboardButton' : 'caption1'}
+          align="center"
         >
           {value}
         </ButtonText>

@@ -1,1 +1,1 @@
-export { useOTP } from "./use-otp"
+export { $phoneStore, $otpCodeStore, setPhone, setOTPCode } from './model'

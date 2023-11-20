@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
   AuthSuccsessScreen,
   AuthOTPConnector,
-  AuthPasswordInputScreen,
+  AuthPasswordInputConnector,
   AuthPhoneInputConnector,
 } from '@screens/Auth'
 import { AuthNavigationParamsList } from '../model/auth-navigation-params-list'
@@ -22,10 +22,10 @@ export const AuthNavigation = () => {
       />
       <Stack.Screen component={AuthOTPConnector} name="AuthOTPScreen" />
       <Stack.Screen
-        component={AuthPasswordInputScreen}
+        component={AuthPasswordInputConnector}
         name="AuthPasswordInputScreen"
       />
-      <Stack.Screen component={AuthSuccsessScreen} name="AutnSuccsessScreen" />
+      <Stack.Screen component={AuthSuccsessScreen} name="AuthSuccsessScreen" />
     </Stack.Navigator>
   )
 }

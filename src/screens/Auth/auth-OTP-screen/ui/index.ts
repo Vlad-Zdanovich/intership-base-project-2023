@@ -1,1 +1,1 @@
-export { AuthOTPScreen } from './auth-otp-screen'
+export { AuthOTPScreen } from './auth-OTP-screen'

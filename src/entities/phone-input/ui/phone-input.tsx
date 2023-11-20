@@ -52,9 +52,9 @@ const PhoneInputView = styled(MaskInput)`
 type CardItemProps = {
   icon: string | ReactNode
   phone: string
-  isFocused: boolean
+  isFocused?: boolean
   setPhone: Dispatch<SetStateAction<string>>
-  setFocus: Dispatch<SetStateAction<boolean>>
+  setFocus?: Dispatch<SetStateAction<boolean>>
   rightItem?: ReactNode
 }
 
@@ -71,11 +71,15 @@ export const PhoneInput = memo(
     const theme = useTheme()
 
     const onFocus = useCallback(() => {
-      setFocus(true)
+      if (setFocus) {
+        setFocus(true)
+      }
     }, [setFocus])
 
     const onEndEditing = useCallback(() => {
-      setFocus(false)
+      if (setFocus) {
+        setFocus(false)
+      }
     }, [setFocus])
 
     useEffect(() => {

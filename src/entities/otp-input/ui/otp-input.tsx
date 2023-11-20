@@ -1,6 +1,6 @@
 import { useTheme } from '@shared/hooks'
 import { styled } from '@shared/ui/theme'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { OTPItem } from './atoms'
 
 const Wrapper = styled.View`
