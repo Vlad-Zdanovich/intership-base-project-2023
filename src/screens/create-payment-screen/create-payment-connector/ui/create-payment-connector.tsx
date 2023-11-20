@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { PaymentType } from '@shared/api'
 import { CreatePaymentScreen } from '@screens/create-payment-screen/ui'
 import { usePaymentOperator, useUpdateHistory } from '@features/create-payment'
 import { PaymentsNavigationParamsList } from '@screens/payments-screen'
-import { showSnack } from '@features/snack-connector'
 import { PaymentOperationStatus } from '@shared/api/'
+import { showSnack } from '@entities/snack-connector'
 
 type Props = NativeStackScreenProps<
   PaymentsNavigationParamsList,
@@ -14,12 +13,17 @@ type Props = NativeStackScreenProps<
 
 export const CreatePaymentConnector = ({ navigation, route }: Props) => {
   const { serviceId, serviceIcon } = route.params
-  const { paymentOperator, isLoading } = usePaymentOperator(serviceId)
-  const { updateHistory } = useUpdateHistory()
+  const { data: paymentOperator, isLoading } = usePaymentOperator(
+    serviceId,
+    'PAYMENT_OPERATION_KEY',
+  )
+  const { mutate: updateHistory } = useUpdateHistory()
   const [phone, setPhone] = useState('')
   const [amount, setAmount] = useState(0)
 
   const onSubmitButtonTapped = useCallback(() => {
+    if (isLoading) return
+
     updateHistory(
       {
         card_id: 12345,

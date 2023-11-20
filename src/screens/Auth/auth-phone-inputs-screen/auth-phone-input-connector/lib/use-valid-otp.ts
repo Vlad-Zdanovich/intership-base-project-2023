@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useOTP } from "@features/OTP"
-import { showSnack } from '@features/snack-connector'
 import { OTPCodeResponse } from '@shared/api/otp/model'
+import { showSnack } from '@entities/snack-connector'
 
 type Props = {
     phone: string

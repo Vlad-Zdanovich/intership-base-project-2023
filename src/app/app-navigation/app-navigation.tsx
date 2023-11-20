@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from '@shared/ui/theme'
-import { SnackConnector } from '@features/snack-connector'
 import { AuthNavigation, TabsNavigation } from 'processes/navigation'
 import { $loginStatusStore } from '@features/login'
 import { useStore } from 'effector-react'
+import { SnackConnector } from '@entities/snack-connector'
 
 const Wrapper = styled.View`
   flex: 1;

@@ -1,4 +1,4 @@
-import { showSnack } from "@features/snack-connector"
+import { showSnack } from "@entities/snack-connector"
 import { getPaymentsType, PaymentType } from "@shared/api"
 import { useEffect } from "react"
 import { useQuery } from "react-query"
@@ -15,19 +15,15 @@ export const usePaymentTypes = () => {
       } = useQuery<any, any, PaymentType[]>({
         queryKey: [PAYMENT_CATEGORIES_KEY],
         queryFn: () => getPaymentsType(),
-        staleTime: MS_IN_DAY
+        staleTime: MS_IN_DAY,
+        onError: () => {
+          showSnack({
+            type: 'error',
+            message: error.message,
+            duration: 3000,
+          })
+        }
       })
-
-
-    useEffect(() => {
-    if (error || isError) {
-        showSnack({
-          type: 'error',
-          message: error.message,
-          duration: 3000,
-        })
-    }   
-    }, [error, isError]) 
 
     return {paymentTypes: data, isLoading}
 }

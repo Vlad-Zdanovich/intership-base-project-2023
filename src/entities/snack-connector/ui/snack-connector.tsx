@@ -5,7 +5,7 @@ import { styled } from '@shared/ui/theme'
 import { useStore } from 'effector-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { $snackStore, hideTopSnack } from '../model'
+import { $snackStore, colorHelper, hideTopSnack } from '../model'
 
 const Wrapper = styled.View<{
   isShowing: boolean
@@ -25,7 +25,6 @@ const Wrapper = styled.View<{
   z-index: 10;
   background-color: ${({ color }) => color};
   border-radius: 20px;
-  box-shadow: 0px 6px 40px rgba(0, 0, 0, 0.3);
 `
 
 const MessageText = styled(Typography)`
@@ -43,12 +42,13 @@ export const SnackConnector = () => {
   const theme = useTheme()
   const timeout = useRef(0)
   const [color, setColor] = useState('')
+  const { getColor } = colorHelper()
 
   useEffect(() => {
     clearTimeout(timeout.current)
     if (snacks.length) {
       setShowing(true)
-      setColor(getColor())
+      setColor(getColor(snacks[0].type))
       timeout.current = setTimeout(() => {
         hideTopSnack()
       }, snacks[0].duration)
@@ -60,17 +60,6 @@ export const SnackConnector = () => {
   const onCloseButtonClick = useCallback(() => {
     hideTopSnack()
   }, [snacks])
-
-  const getColor = () => {
-    switch (snacks[0]?.type) {
-      case 'error':
-        return theme.palette.indicator.error
-      case 'successes':
-        return theme.palette.indicator.done
-      case 'warning':
-        return theme.palette.indicator.done
-    }
-  }
 
   return (
     <Wrapper color={color} isShowing={isShowing} paddingTop={safeArea.top}>

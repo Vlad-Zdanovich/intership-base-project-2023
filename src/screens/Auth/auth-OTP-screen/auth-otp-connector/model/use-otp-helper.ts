@@ -1,7 +1,7 @@
 import { setGuestToken } from "@features/confirm-auth"
 import { $otpCodeStore, $phoneStore, useConfirmAuth, useOTP } from "@features/OTP"
 import { setOTPCodeEvent, setPhoneEvent } from "@features/OTP/model/model"
-import { showSnack } from "@features/snack-connector"
+import { showSnack } from "@entities/snack-connector"
 import { useStore } from "effector-react"
 import { useCallback, useState } from "react"
 

@@ -1,6 +1,6 @@
 import { $guestTokenStore } from '@features/confirm-auth'
 import { useLogin } from '@features/login'
-import { showSnack } from '@features/snack-connector'
+import { showSnack } from '@entities/snack-connector'
 import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useStore } from 'effector-react'
