@@ -71,7 +71,12 @@ export const CreatePaymentScreen = ({
           value="457 334,00 ₽"
         />
         <InputWrapper>
-          <PhoneInput icon={icon} phone={phone} setPhone={setPhone} />
+          <PhoneInput
+            icon={icon}
+            phone={phone}
+            setPhone={setPhone}
+            showSoftInputOnFocus={true}
+          />
         </InputWrapper>
         <AmountInput inputValue={amount} setInputValue={setAmount} />
         <ChipsWrapper>

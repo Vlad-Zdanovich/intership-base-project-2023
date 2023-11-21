@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<
 >
 
 export const AuthSuccessConnector = ({ navigation, route }: Props) => {
-  const { isSuccess, accessToken } = route.params
+  const { isSuccess, accessToken, refreshToken } = route.params
 
   const onCloseButtonClick = useCallback(() => {
     Alert.alert('Вы точно хотите выйти?', '', [
@@ -35,11 +35,12 @@ export const AuthSuccessConnector = ({ navigation, route }: Props) => {
       setLoginStatus({
         isLogin: true,
         accessToken: accessToken,
+        refreshToken: refreshToken,
       })
     } else {
       navigation.goBack()
     }
-  }, [accessToken, isSuccess, navigation])
+  }, [accessToken, isSuccess, navigation, refreshToken])
 
   return (
     <AuthSuccsessScreen

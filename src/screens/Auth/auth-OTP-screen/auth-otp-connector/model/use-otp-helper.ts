@@ -5,21 +5,33 @@ import { showSnack } from "@entities/snack-connector"
 import { useStore } from "effector-react"
 import { useCallback, useState } from "react"
 
-export const useOTPHelper = (
+type UseOTPHelperProps = {
   onSuccess: () => void,
   // eslint-disable-next-line no-unused-vars
   onErrorSendOTP: (attemptAmount: number) => void,
   onSuccessResendOTP: () => void
-) => {
+}
+
+export const useOTPHelper = ({
+  onSuccess,
+  onErrorSendOTP,
+  onSuccessResendOTP
+}: UseOTPHelperProps) => {
     const phone = useStore($phoneStore)
-    const { otpId } = useStore($otpCodeStore)
+    const { otpId, otpCode } = useStore($otpCodeStore)
     const { mutate: postConfirmAuth, isLoading } = useConfirmAuth()
     const [attemptAmount, setAttemptAmount] = useState(0) 
     const [isValid, setIsValid] = useState(true) 
-    const { getOTPCode } = useOTP()
+    const { mutate: getOTPCode } = useOTP()
     
     const checkAuthConfirmed = useCallback(
         (enteredOtpCode: string) => {
+          if (enteredOtpCode !== otpCode) {
+            setIsValid(false)
+            setAttemptAmount(attemptAmount + 1)
+            onErrorSendOTP(attemptAmount + 1)
+            return
+          }
           postConfirmAuth(
             {
               otpId: otpId,
@@ -35,12 +47,11 @@ export const useOTPHelper = (
                 setIsValid(false)
                 setAttemptAmount(attemptAmount + 1)
                 onErrorSendOTP(attemptAmount + 1)
-                
               },
             },
           )
         },
-        [postConfirmAuth, otpId, phone, onSuccess, attemptAmount, onErrorSendOTP],
+        [postConfirmAuth, otpId, phone, onSuccess, attemptAmount, onErrorSendOTP, otpCode],
     )
 
     const resendOTP = useCallback(() => {

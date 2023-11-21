@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const useValideOTP = ({ phone, onSuccess }: Props) => {
-    const { getOTPCode, isLoading } = useOTP()
+    const { mutate: getOTPCode, isLoading } = useOTP()
 
     const onSend = useCallback(() => {
         if (phone.length == 10) {

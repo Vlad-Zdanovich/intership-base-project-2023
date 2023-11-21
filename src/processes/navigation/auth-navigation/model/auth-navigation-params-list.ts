@@ -1,6 +1,7 @@
 type AuthSuccsessScreenProps = {
     isSuccess: boolean
     accessToken?: string
+    refreshToken?: string
 }
 
 export type AuthNavigationParamsList = {

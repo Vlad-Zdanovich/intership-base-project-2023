@@ -47,14 +47,6 @@ export const AuthSuccsessScreen = ({
 }: AuthSuccsessScreenProps) => {
   const theme = useTheme()
 
-  const icon = useMemo(() => {
-    return isSucceeded ? (
-      <IconAuthSuccess size={148} />
-    ) : (
-      <IconAuthError size={148} />
-    )
-  }, [isSucceeded])
-
   const titleText = useMemo(
     () => (isSucceeded ? 'Все готово' : 'Внимание'),
     [isSucceeded],
@@ -74,7 +66,11 @@ export const AuthSuccsessScreen = ({
   return (
     <Wrapper>
       <ContentWrapper>
-        {icon}
+        {isSucceeded ? (
+          <IconAuthSuccess size={148} />
+        ) : (
+          <IconAuthError size={148} />
+        )}
         <TitleText variant="subtitle">{titleText}</TitleText>
         <MessageText variant="body15Regular" align="center">
           {messageText}

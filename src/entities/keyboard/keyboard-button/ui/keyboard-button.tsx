@@ -22,8 +22,6 @@ const ButtonText = styled(Typography)`
   color: ${({ theme }) => theme.palette.text.primary};
 `
 
-const StyledIconDelete = styled(IconDelete)``
-
 export const KeyboardButton = ({
   value,
   type = 'default',
@@ -37,10 +35,9 @@ export const KeyboardButton = ({
 
   return (
     <Wrapper onPress={onPress}>
-      {type === 'delete' && (
-        <StyledIconDelete size={24} color={theme.palette.text.primary} />
-      )}
-      {(type === 'default' || type === 'cancel' || type === 'timer') && (
+      {type === 'delete' ? (
+        <IconDelete size={24} color={theme.palette.text.primary} />
+      ) : (
         <ButtonText
           variant={type === 'default' ? 'keyboardButton' : 'caption1'}
           align="center"

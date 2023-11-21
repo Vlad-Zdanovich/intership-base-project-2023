@@ -38,7 +38,7 @@ export const Keyboard = ({ buttonList, isShowing, onKeyPress }: Props) => {
     >
       {buttonList.map((row, rowIndex) => {
         return (
-          <KeyboardRow key={rowIndex.toString()}>
+          <KeyboardRow key={rowIndex.toString() + row}>
             {row.map((button, buttonIndex) => {
               return (
                 <KeyboardButton

@@ -52,9 +52,10 @@ const PhoneInputView = styled(MaskInput)`
 type PhoneInputProps = {
   icon: string | ReactNode
   phone: string
-  isFocused?: boolean
+  showSoftInputOnFocus: boolean
   setPhone: Dispatch<SetStateAction<string>>
   setFocus?: Dispatch<SetStateAction<boolean>>
+  isFocused?: boolean
   rightItem?: ReactNode
 }
 
@@ -63,6 +64,7 @@ export const PhoneInput = memo(
     icon,
     phone,
     isFocused,
+    showSoftInputOnFocus,
     setPhone,
     setFocus,
     rightItem,
@@ -102,7 +104,8 @@ export const PhoneInput = memo(
           onChangeText={(_masked: string, unmasked: string) => {
             setPhone(unmasked)
           }}
-          keyboardType="phone-pad"
+          keyboardType="number-pad"
+          showSoftInputOnFocus={showSoftInputOnFocus}
           placeholder="Номер телефона"
           placeholderTextColor={theme.palette.text.tertiary}
           mask={PHONE_MASK}

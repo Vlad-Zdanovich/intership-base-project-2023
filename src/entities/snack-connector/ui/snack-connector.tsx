@@ -7,7 +7,7 @@ import { useStore } from 'effector-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { $snackStore, colorHelper, hideTopSnack } from '../model'
+import { $snackStore, useColorHelper, hideTopSnack } from '../model'
 
 const Wrapper = styled.View<{
   isShowing: boolean
@@ -44,7 +44,7 @@ export const SnackConnector = () => {
   const theme = useTheme()
   const timeout = useRef(0)
   const [color, setColor] = useState('')
-  const { getColor } = colorHelper()
+  const { getColor } = useColorHelper()
 
   useEffect(() => {
     clearTimeout(timeout.current)

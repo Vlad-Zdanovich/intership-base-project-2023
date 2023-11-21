@@ -55,7 +55,7 @@ export const OTPInputs = ({ otpCode, otpLen, isValid }: Props) => {
               isFocused={
                 otpValues.length === index && otpValues[index] === undefined
               }
-              key={index}
+              key={index + Date.now()}
             />
             {index === middleInputIndex ? (
               <MiddleInputsSeparator color={separatorColor} />

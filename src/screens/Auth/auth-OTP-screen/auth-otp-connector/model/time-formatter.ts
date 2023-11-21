@@ -1,14 +1,10 @@
-import { useCallback } from "react"
+function formatNumberToMinutes(value: number) {
+    const minutes = Math.floor(value / 60)
+    const seconds = value - minutes * 60
 
-export const timeFormatter = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const formatNumberToMinutes = useCallback((value: number) => {
-        const minutes = Math.floor(value / 60)
-        const seconds = value - minutes * 60
-    
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+}
 
-        return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
-    }, []) 
-
-    return { formatNumberToMinutes }
+export const TimeFormatter =  {
+    formatNumberToMinutes
 }

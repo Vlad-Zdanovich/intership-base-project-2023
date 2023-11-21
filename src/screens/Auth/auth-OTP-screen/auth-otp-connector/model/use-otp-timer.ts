@@ -6,6 +6,7 @@ export const useOTPTimer = (durationInSeconds: number) => {
 
     const resetTimeLeft = useCallback(() => {
         setTimeLeft(durationInSeconds)
+        setTimeExpired(false)
     }, [setTimeLeft, durationInSeconds])
 
     useEffect(() => {
@@ -18,9 +19,11 @@ export const useOTPTimer = (durationInSeconds: number) => {
             return
         }
 
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             setTimeLeft(prev => --prev)
         }, 1000)
+
+        return () => { clearTimeout(timer) }
     }, [timeLeft, setTimeLeft, durationInSeconds, setTimeExpired, isTimeExpired])
 
     return {

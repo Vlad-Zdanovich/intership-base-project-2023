@@ -76,11 +76,12 @@ export const AuthPhoneInputScreen = ({
             phone={phone}
             isFocused={isFocused}
             setPhone={setPhone}
+            showSoftInputOnFocus={false}
             setFocus={setFocus}
             rightItem={isLoading ? <Loader /> : null}
           />
         </InputWrapper>
-        <ButtonWrapper onPress={onSubmitButtonTapped}>
+        <ButtonWrapper disabled={isLoading} onPress={onSubmitButtonTapped}>
           <SubmitButton variant="button" align="center">
             Продолжить
           </SubmitButton>

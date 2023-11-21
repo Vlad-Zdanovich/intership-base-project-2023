@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const useHeightAnimation = ({toValue, isShowing}: Props) => {
-    const heightValue = useMemo(() => new Animated.Value(0), [])
+    const heightValue = useMemo(() => new Animated.Value(toValue), [toValue])
 
     const heightAnimation = useCallback(() => {
       Animated.timing(heightValue, {

@@ -20,7 +20,7 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
   const { password, isLengthValid, isCharactersValid, setPassword } =
     usePassword('')
   const guestToken = useStore($guestTokenStore)
-  const { mutate: postLogin } = useLogin()
+  const { mutate: postLogin, isLoading } = useLogin()
 
   const onContinueTapped = useCallback(() => {
     if (isLengthValid && isCharactersValid) {
@@ -34,6 +34,7 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
             navigation.navigate('AuthSuccsessScreen', {
               isSuccess: true,
               accessToken: data.accessToken,
+              refreshToken: data.refreshToken,
             })
           },
           onError: () => {
@@ -77,6 +78,7 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
   return (
     <AuthPasswordInputScreen
       password={password}
+      isLoading={isLoading}
       setPassword={setPassword}
       onContinueTapped={onContinueTapped}
       onCloseTapped={onCloseTapped}
