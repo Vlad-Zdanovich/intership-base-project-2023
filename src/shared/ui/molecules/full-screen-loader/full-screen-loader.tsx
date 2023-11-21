@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTheme } from '@shared/hooks'
 import { Loader } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'

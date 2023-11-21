@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
 import { useOTP } from "@features/OTP"
-import { OTPCodeResponse } from '@shared/api/otp/model'
 import { showSnack } from '@entities/snack-connector'
+import { OTPCodeResponse } from '@shared/api/otp/model'
 
 type Props = {
     phone: string
+    // eslint-disable-next-line no-unused-vars
     onSuccess: (data: OTPCodeResponse) => void
 }
 
@@ -16,7 +17,7 @@ export const useValideOTP = ({ phone, onSuccess }: Props) => {
           getOTPCode(
             { phone: phone },
             {
-              onSuccess: onSuccess,
+              onSuccess: (data) => onSuccess(data),
               onError: () => {
                 showSnack({
                   type: 'error',
@@ -33,7 +34,7 @@ export const useValideOTP = ({ phone, onSuccess }: Props) => {
             duration: 3000,
           })
         }
-      }, [getOTPCode, phone])
+      }, [getOTPCode, onSuccess, phone])
 
     return { onSend, isLoading }
 }

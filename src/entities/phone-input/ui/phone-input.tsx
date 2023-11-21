@@ -49,7 +49,7 @@ const PhoneInputView = styled(MaskInput)`
   letter-spacing: -0.24px;
 `
 
-type CardItemProps = {
+type PhoneInputProps = {
   icon: string | ReactNode
   phone: string
   isFocused?: boolean
@@ -66,7 +66,7 @@ export const PhoneInput = memo(
     setPhone,
     setFocus,
     rightItem,
-  }: CardItemProps) => {
+  }: PhoneInputProps) => {
     const inputRef = useRef<TextInput | null>(null)
     const theme = useTheme()
 
@@ -99,7 +99,7 @@ export const PhoneInput = memo(
         <PhoneInputView
           ref={inputRef}
           value={phone}
-          onChangeText={(masked: string, unmasked: string) => {
+          onChangeText={(_masked: string, unmasked: string) => {
             setPhone(unmasked)
           }}
           keyboardType="phone-pad"
@@ -115,3 +115,5 @@ export const PhoneInput = memo(
     )
   },
 )
+
+PhoneInput.displayName = 'PhoneInput'

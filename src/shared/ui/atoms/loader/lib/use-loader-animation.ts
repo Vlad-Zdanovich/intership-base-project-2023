@@ -25,7 +25,7 @@ export const useLoaderAnimation = () => {
   
     useEffect(() => {
       spin()
-    }, [])
+    }, [spin])
 
     return { rotate } 
 }

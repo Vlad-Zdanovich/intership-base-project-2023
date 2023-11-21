@@ -88,3 +88,5 @@ export const AmountInput = memo(
     )
   },
 )
+
+AmountInput.displayName = 'AmountInput'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { styled } from '@shared/ui/theme'
-import { useTheme } from '@shared/hooks'
 import { StyleProp, ViewStyle } from 'react-native/types'
 import { Typography } from '@shared/ui/atoms'
 
@@ -24,6 +23,7 @@ const Chips = styled(Typography)`
 
 type ChipsSelectionProps = {
   style?: StyleProp<ViewStyle>
+  // eslint-disable-next-line no-unused-vars
   onChipsTapped: (value: number) => void
 }
 
@@ -31,8 +31,6 @@ export const ChipsSelection = ({
   style,
   onChipsTapped,
 }: ChipsSelectionProps) => {
-  const theme = useTheme()
-
   const data = [100, 200, 300, 400, 500, 1000]
 
   return (
@@ -43,7 +41,7 @@ export const ChipsSelection = ({
         showsHorizontalScrollIndicator={false}
         renderItem={(item) => (
           <ChipsWrapper onPress={() => onChipsTapped(item.item)}>
-            <Chips variant="caption1" children={`${item.item} ₽`} />
+            <Chips variant="caption1">{`${item.item} ₽`}</Chips>
           </ChipsWrapper>
         )}
         horizontal={true}

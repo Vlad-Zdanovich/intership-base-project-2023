@@ -1,3 +1,4 @@
+import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
   AuthSuccessConnector,
@@ -5,6 +6,7 @@ import {
   AuthPasswordInputConnector,
   AuthPhoneInputConnector,
 } from '@screens/Auth'
+
 import { AuthNavigationParamsList } from '../model/auth-navigation-params-list'
 
 const Stack = createNativeStackNavigator<AuthNavigationParamsList>()

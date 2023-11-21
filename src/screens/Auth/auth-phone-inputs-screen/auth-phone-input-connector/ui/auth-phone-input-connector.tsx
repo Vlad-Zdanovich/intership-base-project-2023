@@ -1,9 +1,11 @@
+import React from 'react'
 import { TKeyboardButton } from '@entities/keyboard'
 import { setOTPCodeEvent, setPhoneEvent } from '@features/OTP/model/model'
 import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { OTPCodeResponse } from '@shared/api/otp/model'
 import { useState, useCallback } from 'react'
+
 import { AuthPhoneInputScreen } from '../../ui'
 import { useValideOTP } from '../lib'
 
@@ -15,10 +17,6 @@ type Props = NativeStackScreenProps<
 export const AuthPhoneInputConnector = ({ navigation }: Props) => {
   const [phone, setPhone] = useState('')
   const [isFocused, setIsFocused] = useState(false)
-  const { onSend, isLoading } = useValideOTP({
-    phone: phone,
-    onSuccess: (data) => onSuccessSendOTP(data),
-  })
 
   const onSuccessSendOTP = useCallback(
     (data: OTPCodeResponse) => {
@@ -26,8 +24,13 @@ export const AuthPhoneInputConnector = ({ navigation }: Props) => {
       setOTPCodeEvent(data)
       navigation.navigate('AuthOTPScreen')
     },
-    [phone, setPhoneEvent, setOTPCodeEvent],
+    [phone, navigation],
   )
+
+  const { onSend, isLoading } = useValideOTP({
+    phone: phone,
+    onSuccess: (data) => onSuccessSendOTP(data),
+  })
 
   const onKeyPress = useCallback(
     (keyboardButton: TKeyboardButton) => {

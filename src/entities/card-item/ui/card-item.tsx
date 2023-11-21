@@ -1,9 +1,8 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { Typography } from '@shared/ui/atoms'
 import { useTheme } from '@shared/hooks'
 import { IconCardMasterCard, IconChevronDown } from '@shared/ui/icons'
-import { View } from 'react-native'
 
 const Wrapper = styled.View`
   background: ${({ theme }) => theme.palette.background.secondary};
@@ -55,7 +54,7 @@ type CardItemProps = {
   value: string
 }
 
-export const CardItem = ({ type, name, value }: CardItemProps) => {
+export const CardItem = ({ name, value }: CardItemProps) => {
   const theme = useTheme()
 
   return (

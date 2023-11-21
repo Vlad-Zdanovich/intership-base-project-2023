@@ -1,3 +1,4 @@
+import React from 'react'
 import { Keyboard, TKeyboardPress } from '@entities/keyboard'
 import { OTPInputs } from '@entities/otp-input'
 import { Typography } from '@shared/ui/atoms'
@@ -28,7 +29,6 @@ const ErrorMessage = styled(Typography)`
 type Props = {
   otpCode: string
   timeButtonText: string
-  isTimeExpired: boolean
   errorMessage: string
   isValid: boolean
   otpLen: number
@@ -38,7 +38,6 @@ type Props = {
 export const AuthOTPScreen = ({
   otpCode,
   timeButtonText,
-  isTimeExpired,
   errorMessage,
   isValid,
   otpLen,

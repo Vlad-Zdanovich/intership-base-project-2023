@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { ComponentStory, ComponentMeta } from '@storybook/react-native'
 import React from 'react'
 

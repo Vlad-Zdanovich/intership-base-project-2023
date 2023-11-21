@@ -1,12 +1,13 @@
 import { setGuestToken } from "@features/confirm-auth"
 import { $otpCodeStore, $phoneStore, useConfirmAuth, useOTP } from "@features/OTP"
-import { setOTPCodeEvent, setPhoneEvent } from "@features/OTP/model/model"
+import { setOTPCodeEvent } from "@features/OTP/model/model"
 import { showSnack } from "@entities/snack-connector"
 import { useStore } from "effector-react"
 import { useCallback, useState } from "react"
 
 export const useOTPHelper = (
   onSuccess: () => void,
+  // eslint-disable-next-line no-unused-vars
   onErrorSendOTP: (attemptAmount: number) => void,
   onSuccessResendOTP: () => void
 ) => {
@@ -39,7 +40,7 @@ export const useOTPHelper = (
             },
           )
         },
-        [postConfirmAuth, otpId, phone, setGuestToken, attemptAmount, setAttemptAmount],
+        [postConfirmAuth, otpId, phone, onSuccess, attemptAmount, onErrorSendOTP],
     )
 
     const resendOTP = useCallback(() => {
@@ -59,7 +60,7 @@ export const useOTPHelper = (
           },
         },
       )
-    }, [setOTPCodeEvent, onSuccessResendOTP])
+    }, [getOTPCode, phone, onSuccessResendOTP])
 
     return { checkAuthConfirmed, resendOTP, attemptAmount, isLoading, isValid, setIsValid }
 }

@@ -1,9 +1,11 @@
+import React from 'react'
 import { TKeyboardButton } from '@entities/keyboard'
 import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FullscreenLoader } from '@shared/ui/molecules'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Alert } from 'react-native'
+
 import { AuthOTPScreen } from '../../ui'
 import { timeFormatter, useOTPHelper, useOTPTimer } from '../model'
 
@@ -21,6 +23,7 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
     isLoading,
     isValid,
     setIsValid,
+    // eslint-disable-next-line no-use-before-define
   } = useOTPHelper(onSuccessSendOTP, onErrorSendOTP, onSuccessResendOTP)
   const { timeLeft, isTimeExpired, resetTimeLeft } = useOTPTimer(TIMER_DURATION)
   const { formatNumberToMinutes } = timeFormatter()
@@ -29,7 +32,7 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
     return isTimeExpired
       ? 'Выслать код повторно'
       : `Повторить через ${formatNumberToMinutes(timeLeft)}`
-  }, [timeLeft, isTimeExpired])
+  }, [isTimeExpired, formatNumberToMinutes, timeLeft])
 
   const errorMessage = useMemo(
     () => `Неверный код. Осталось ${TOTAL_ATTEMPTS_AMOUNT - attemptAmount}`,
@@ -82,12 +85,12 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
           break
       }
     },
-    [enteredOTPCode, setEnteredOTPCode],
+    [enteredOTPCode, isTimeExpired, resendOTP],
   )
 
   useEffect(() => {
     if (enteredOTPCode.length === 4) checkAuthConfirmed(enteredOTPCode)
-  }, [enteredOTPCode])
+  }, [checkAuthConfirmed, enteredOTPCode])
 
   return isLoading ? (
     <FullscreenLoader />
@@ -95,7 +98,6 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
     <AuthOTPScreen
       otpCode={enteredOTPCode}
       timeButtonText={timeButtonText}
-      isTimeExpired={isTimeExpired}
       otpLen={4}
       errorMessage={errorMessage}
       isValid={isValid}

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   IconMainProduct,
   IconPayment,
@@ -12,6 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { styled } from '@shared/ui/theme'
 import { TabsNavigationParamsList } from '@app/app-navigation/types'
 import { useTheme } from '@shared/hooks'
+
 import { PaymentsNavigation } from './payments-navigation'
 
 const HeaderWrapper = styled.View`

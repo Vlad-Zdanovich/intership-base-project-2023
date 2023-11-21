@@ -1,7 +1,9 @@
+import React from 'react'
 import Svg, { Rect, Path, Mask, G } from 'react-native-svg'
+
 import { TBaseIconProps } from './types'
 
-export const IconAuthSuccess = ({ size, color }: TBaseIconProps) => {
+export const IconAuthSuccess = ({ size }: TBaseIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 148 148" fill="none">
       <Rect width={148} height={148} rx={74} fill="#403A47" />

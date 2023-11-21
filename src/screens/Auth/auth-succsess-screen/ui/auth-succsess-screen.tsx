@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { PrimaryButton } from '@shared/ui/molecules'
 import { Typography } from '@shared/ui/atoms'

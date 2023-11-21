@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { useCallback } from 'react'
 import { IconDelete } from '@shared/ui/icons'

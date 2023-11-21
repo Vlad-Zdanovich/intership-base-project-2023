@@ -24,12 +24,12 @@ export const useHeightAnimation = ({toValue, isShowing}: Props) => {
           inputRange: [0, 1],
           outputRange: [0, toValue],
         }),
-      [heightValue, isShowing],
+      [heightValue, toValue],
     )
   
     useEffect(() => {
         heightAnimation()
-    }, [isShowing])
+    }, [heightAnimation, isShowing])
 
     return { height }
 }

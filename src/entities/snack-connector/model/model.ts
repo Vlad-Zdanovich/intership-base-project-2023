@@ -1,4 +1,4 @@
-import { createEvent, createStore, sample } from "effector";
+import { createEvent, createStore } from "effector";
 
 export type SnackType = 'error' | 'successes' | 'warning'
 
@@ -15,5 +15,5 @@ export const hideTopSnack = createEvent()
 export const hideAllSnack = createEvent()
 
 $snackStore.on(showSnack, (state, payload) => ([...state, payload]))
-$snackStore.on(hideTopSnack, (state, _) => state.slice(1))
+$snackStore.on(hideTopSnack, (state) => state.slice(1))
 $snackStore.reset(hideAllSnack)

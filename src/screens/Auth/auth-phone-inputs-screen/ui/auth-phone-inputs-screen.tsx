@@ -1,11 +1,13 @@
+import React from 'react'
 import { Keyboard, TKeyboardPress } from '@entities/keyboard'
 import { PhoneInput } from '@entities/phone-input'
 import { Loader, Typography } from '@shared/ui/atoms'
 import { IconLogoMedium, IconPhone } from '@shared/ui/icons'
 import { styled } from '@shared/ui/theme'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
-import { usePaddingAnimate } from '../lib'
+import { Dispatch, SetStateAction } from 'react'
 import { Animated } from 'react-native'
+
+import { usePaddingAnimate } from '../lib'
 
 const Wrapper = styled(Animated.View)`
   background: ${({ theme }) => theme.palette.background.primary};

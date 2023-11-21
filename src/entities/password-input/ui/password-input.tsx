@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  memo,
-  ReactNode,
-  SetStateAction,
-  useState,
-} from 'react'
+import React, { Dispatch, memo, SetStateAction, useState } from 'react'
 import { styled } from '@shared/ui/theme'
 import { IconEyeOff, IconEye, IconLock } from '@shared/ui/icons'
 
@@ -75,3 +69,5 @@ export const PasswordInput = memo(
     )
   },
 )
+
+PasswordInput.displayName = 'PasswordInput'

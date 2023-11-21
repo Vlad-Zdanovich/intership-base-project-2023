@@ -1,6 +1,7 @@
+import React from 'react'
 import { PasswordInput } from '@entities/password-input'
 import { Typography } from '@shared/ui/atoms'
-import { IconClose, IconLock, IconLogoMedium } from '@shared/ui/icons'
+import { IconClose, IconLogoMedium } from '@shared/ui/icons'
 import { styled } from '@shared/ui/theme'
 import { Dispatch, SetStateAction } from 'react'
 import { Animated } from 'react-native'

@@ -24,12 +24,12 @@ export const usePaddingAnimate = ({toValue, isShowing}: Props) => {
           inputRange: [0, 1],
           outputRange: [0, toValue],
         }),
-      [paddingValue, isShowing],
+      [paddingValue, toValue],
     )
   
     useEffect(() => {
         paddingAnimation()
-    }, [isShowing])
+    }, [isShowing, paddingAnimation])
 
     return { padding }
 }

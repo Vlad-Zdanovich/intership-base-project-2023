@@ -1,3 +1,4 @@
+import React from 'react'
 import { $guestTokenStore } from '@features/confirm-auth'
 import { useLogin } from '@features/login'
 import { showSnack } from '@entities/snack-connector'
@@ -6,6 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useStore } from 'effector-react'
 import { useCallback } from 'react'
 import { Alert } from 'react-native'
+
 import { AuthPasswordInputScreen } from '../../ui'
 import { usePassword } from './hooks'
 
@@ -48,7 +50,14 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
         duration: 3000,
       })
     }
-  }, [guestToken, password])
+  }, [
+    guestToken,
+    isCharactersValid,
+    isLengthValid,
+    navigation,
+    password,
+    postLogin,
+  ])
 
   const onCloseTapped = useCallback(() => {
     Alert.alert('Вы точно хотите выйти?', '', [
@@ -63,7 +72,7 @@ export const AuthPasswordInputConnector = ({ navigation }: Props) => {
         },
       },
     ])
-  }, [])
+  }, [navigation])
 
   return (
     <AuthPasswordInputScreen

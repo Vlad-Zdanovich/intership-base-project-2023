@@ -1,8 +1,9 @@
 import { useTheme } from "@shared/hooks"
 import { useCallback } from "react"
+
 import { SnackType } from "./model"
 
-export const colorHelper = () => {
+export const useColorHelper = () => {
     const theme = useTheme()
 
     const getColor = useCallback((type: SnackType) => {

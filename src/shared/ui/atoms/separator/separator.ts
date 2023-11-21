@@ -1,4 +1,3 @@
-import React from 'react'
 import { styled } from '@shared/ui/theme'
 
 export const Separator = styled.View<{

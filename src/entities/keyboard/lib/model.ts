@@ -7,4 +7,5 @@ export type TKeyboardButton = {
     type?: TKeyboardButtonType
 }
 
+// eslint-disable-next-line no-unused-vars
 export type TKeyboardPress = (keyboardButton: TKeyboardButton) => void

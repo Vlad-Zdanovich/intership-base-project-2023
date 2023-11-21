@@ -1,7 +1,9 @@
+import React from 'react'
 import Svg, { Circle, Path } from 'react-native-svg'
+
 import { TBaseIconProps } from './types'
 
-export const IconAuthError = ({ size, color }: TBaseIconProps) => {
+export const IconAuthError = ({ size }: TBaseIconProps) => {
   return (
     <Svg
       width={size ?? 148}
