@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import React from 'react'
 import { TKeyboardButton } from '@entities/keyboard'
 import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
@@ -16,31 +15,9 @@ const TIMER_DURATION = 180
 type Props = NativeStackScreenProps<AuthNavigationParamsList, 'AuthOTPScreen'>
 
 export const AuthOTPConnector = ({ navigation }: Props) => {
-  const [enteredOTPCode, setEnteredOTPCode] = useState('')
-  const {
-    checkAuthConfirmed,
-    resendOTP,
-    attemptAmount,
-    isLoading,
-    isValid,
-    setIsValid,
-  } = useOTPHelper({
-    onSuccess: onSuccessSendOTP,
-    onErrorSendOTP: onErrorSendOTP,
-    onSuccessResendOTP: onSuccessResendOTP,
-  })
   const { timeLeft, isTimeExpired, resetTimeLeft } = useOTPTimer(TIMER_DURATION)
-
-  const timeButtonText = useMemo(() => {
-    return isTimeExpired
-      ? 'Выслать код повторно'
-      : `Повторить через ${TimeFormatter.formatNumberToMinutes(timeLeft)}`
-  }, [isTimeExpired, timeLeft])
-
-  const errorMessage = useMemo(
-    () => `Неверный код. Осталось ${TOTAL_ATTEMPTS_AMOUNT - attemptAmount}`,
-    [attemptAmount],
-  )
+  const [enteredOTPCode, setEnteredOTPCode] = useState('')
+  const [isValid, setIsValid] = useState(true)
 
   function onSuccessSendOTP() {
     navigation.navigate('AuthPasswordInputScreen')
@@ -71,6 +48,25 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
       }, 3000)
     }
   }
+
+  const { checkAuthConfirmed, resendOTP, attemptAmount, isLoading } =
+    useOTPHelper({
+      onSuccess: onSuccessSendOTP,
+      onErrorSendOTP: onErrorSendOTP,
+      onSuccessResendOTP: onSuccessResendOTP,
+      setIsValid: setIsValid,
+    })
+
+  const timeButtonText = useMemo(() => {
+    return isTimeExpired
+      ? 'Выслать код повторно'
+      : `Повторить через ${TimeFormatter.formatNumberToMinutes(timeLeft)}`
+  }, [isTimeExpired, timeLeft])
+
+  const errorMessage = useMemo(
+    () => `Неверный код. Осталось ${TOTAL_ATTEMPTS_AMOUNT - attemptAmount}`,
+    [attemptAmount],
+  )
 
   const onKeyPress = useCallback(
     (key: TKeyboardButton) => {

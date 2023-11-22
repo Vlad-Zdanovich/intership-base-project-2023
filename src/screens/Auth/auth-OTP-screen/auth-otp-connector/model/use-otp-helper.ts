@@ -3,35 +3,38 @@ import { $otpCodeStore, $phoneStore, useConfirmAuth, useOTP } from "@features/OT
 import { setOTPCodeEvent } from "@features/OTP/model/model"
 import { showSnack } from "@entities/snack-connector"
 import { useStore } from "effector-react"
-import { useCallback, useState } from "react"
+import { Dispatch, SetStateAction, useCallback, useState } from "react"
 
 type UseOTPHelperProps = {
   onSuccess: () => void,
   // eslint-disable-next-line no-unused-vars
   onErrorSendOTP: (attemptAmount: number) => void,
-  onSuccessResendOTP: () => void
+  onSuccessResendOTP: () => void,
+  setIsValid: Dispatch<SetStateAction<boolean>>
 }
 
 export const useOTPHelper = ({
   onSuccess,
   onErrorSendOTP,
-  onSuccessResendOTP
+  onSuccessResendOTP,
+  setIsValid
 }: UseOTPHelperProps) => {
     const phone = useStore($phoneStore)
     const { otpId, otpCode } = useStore($otpCodeStore)
     const { mutate: postConfirmAuth, isLoading } = useConfirmAuth()
     const [attemptAmount, setAttemptAmount] = useState(0) 
-    const [isValid, setIsValid] = useState(true) 
     const { mutate: getOTPCode } = useOTP()
     
     const checkAuthConfirmed = useCallback(
         (enteredOtpCode: string) => {
+          if (isLoading) return
+
           if (enteredOtpCode !== otpCode) {
             setIsValid(false)
             setAttemptAmount(attemptAmount + 1)
             onErrorSendOTP(attemptAmount + 1)
             return
-          }
+          } 
           postConfirmAuth(
             {
               otpId: otpId,
@@ -51,7 +54,7 @@ export const useOTPHelper = ({
             },
           )
         },
-        [postConfirmAuth, otpId, phone, onSuccess, attemptAmount, onErrorSendOTP, otpCode],
+        [isLoading, otpCode, postConfirmAuth, otpId, phone, setIsValid, attemptAmount, onErrorSendOTP, onSuccess],
     )
 
     const resendOTP = useCallback(() => {
@@ -73,5 +76,5 @@ export const useOTPHelper = ({
       )
     }, [getOTPCode, phone, onSuccessResendOTP])
 
-    return { checkAuthConfirmed, resendOTP, attemptAmount, isLoading, isValid, setIsValid }
+    return { checkAuthConfirmed, resendOTP, attemptAmount, isLoading, setIsValid }
 }
