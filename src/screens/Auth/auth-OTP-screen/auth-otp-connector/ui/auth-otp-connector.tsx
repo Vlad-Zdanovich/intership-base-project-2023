@@ -3,7 +3,7 @@ import { TKeyboardButton } from '@entities/keyboard'
 import { AuthNavigationParamsList } from '@processes/navigation/auth-navigation/model/auth-navigation-params-list'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FullscreenLoader } from '@shared/ui/molecules'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Alert } from 'react-native'
 
 import { AuthOTPScreen } from '../../ui'
@@ -72,7 +72,9 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
     (key: TKeyboardButton) => {
       switch (key?.type) {
         case 'default':
-          setEnteredOTPCode(enteredOTPCode + key.value)
+          const newOTPCode = enteredOTPCode + key.value
+          setEnteredOTPCode(newOTPCode)
+          if (newOTPCode.length === 4) checkAuthConfirmed(newOTPCode)
           break
         case 'delete':
           setEnteredOTPCode(enteredOTPCode.slice(0, -1))
@@ -84,12 +86,8 @@ export const AuthOTPConnector = ({ navigation }: Props) => {
           break
       }
     },
-    [enteredOTPCode, isTimeExpired, resendOTP],
+    [enteredOTPCode, isTimeExpired, resendOTP, checkAuthConfirmed],
   )
-
-  useEffect(() => {
-    if (enteredOTPCode.length === 4) checkAuthConfirmed(enteredOTPCode)
-  }, [checkAuthConfirmed, enteredOTPCode])
 
   return isLoading ? (
     <FullscreenLoader />

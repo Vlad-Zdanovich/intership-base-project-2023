@@ -11,9 +11,15 @@ const Wrapper = styled.View`
   column-gap: 6px;
 `
 
+const OTPWrapper = styled.View`
+  flex-direction: row;
+`
+
 const MiddleInputsSeparator = styled.View<{ color: string }>`
   width: 10px;
   height: 2px;
+  margin-left: 5px;
+  align-self: center;
   background-color: ${({ color }) => color};
 `
 
@@ -48,19 +54,18 @@ export const OTPInputs = ({ otpCode, otpLen, isValid }: Props) => {
     <Wrapper>
       {otpArr.map((_, index) => {
         return (
-          <>
+          <OTPWrapper key={index + Date.now()}>
             <OTPItem
               value={otpValues[index] ?? ''}
               isValid={isValid}
               isFocused={
                 otpValues.length === index && otpValues[index] === undefined
               }
-              key={index + Date.now()}
             />
             {index === middleInputIndex ? (
               <MiddleInputsSeparator color={separatorColor} />
             ) : null}
-          </>
+          </OTPWrapper>
         )
       })}
     </Wrapper>

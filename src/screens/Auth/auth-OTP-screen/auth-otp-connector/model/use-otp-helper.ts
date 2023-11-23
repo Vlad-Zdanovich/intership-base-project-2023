@@ -28,7 +28,7 @@ export const useOTPHelper = ({
     const checkAuthConfirmed = useCallback(
         (enteredOtpCode: string) => {
           if (isLoading) return
-
+          console.log("bruh")
           if (enteredOtpCode !== otpCode) {
             setIsValid(false)
             setAttemptAmount(attemptAmount + 1)
