@@ -36,6 +36,7 @@ export const AuthPhoneInputConnector = ({ navigation }: Props) => {
     (keyboardButton: TKeyboardButton) => {
       switch (keyboardButton.type) {
         case 'default':
+          if ((phone + keyboardButton.value).length > 10) return
           setPhone(phone + keyboardButton.value)
           break
         case 'delete':
