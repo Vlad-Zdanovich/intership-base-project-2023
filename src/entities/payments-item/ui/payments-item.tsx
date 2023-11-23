@@ -1,9 +1,9 @@
 import React from 'react'
 import { Typography } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
-import { PaymentType } from '@shared/atoms/payment-type'
 import { Icon1Internet, Icon1JKH, Icon1Mobile } from '@shared/ui/icons'
 import { useTheme } from '@shared/hooks'
+import { PaymentType } from '@shared/api'
 
 const Wrapper = styled.TouchableOpacity`
   flex-direction: row;
@@ -22,6 +22,7 @@ const IconWrapper = styled.View`
 
 export type PaymentsItemProps = {
   type: PaymentType
+  // eslint-disable-next-line no-unused-vars
   onPress: (type: PaymentType) => void
 }
 

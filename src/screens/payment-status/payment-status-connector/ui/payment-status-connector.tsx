@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { PaymentsNavigationParamsList } from '@screens/payments-screen'
 import { PaymentStatus } from '@screens/payment-status/ui'
@@ -13,7 +13,7 @@ export const PaymentsStatusConnector = ({ navigation, route }: Props) => {
 
   const onDoneButtonClick = useCallback(() => {
     navigation.popToTop()
-  }, [])
+  }, [navigation])
 
   return (
     <PaymentStatus

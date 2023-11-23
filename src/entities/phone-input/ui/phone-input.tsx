@@ -1,35 +1,44 @@
-import React, { Dispatch, SetStateAction, memo, useState } from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  memo,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react'
+import { Image, TextInput } from 'react-native'
 import { styled } from '@shared/ui/theme'
 import { useTheme } from '@shared/hooks'
 import MaskInput from 'react-native-mask-input'
 import { PHONE_MASK } from '@shared/atoms'
 
 const Wrapper = styled.View`
-  background: ${({ theme }) => theme.palette.background.secondary};
-  height: 116px;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`
-
-const InputWrapper = styled.View`
   background: ${({ theme }) => theme.palette.content.primary};
   flex: 1;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 24px 14px;
   border-radius: 26px;
 `
 
-const Icon = styled.Image`
+const IconWrapper = styled.View`
   height: 24px;
   width: 24px;
   margin-left: 16px;
   border-radius: 12px;
 `
 
+const RightItemWrapper = styled.View`
+  height: 24px;
+  width: 24px;
+  margin-right: 16px;
+`
+
 const PhoneInputView = styled(MaskInput)`
   color: ${({ theme }) => theme.palette.text.primary};
+  flex: 1;
   padding-left: 16px;
   padding-right: 16px;
   font-family: SF Pro Text;
@@ -40,30 +49,75 @@ const PhoneInputView = styled(MaskInput)`
   letter-spacing: -0.24px;
 `
 
-type CardItemProps = {
-  icon: string
+type PhoneInputProps = {
+  icon: string | ReactNode
   phone: string
+  showSoftInputOnFocus: boolean
   setPhone: Dispatch<SetStateAction<string>>
+  setFocus?: Dispatch<SetStateAction<boolean>>
+  isFocused?: boolean
+  rightItem?: ReactNode
 }
 
-export const PhoneInput = memo(({ icon, phone, setPhone }: CardItemProps) => {
-  const theme = useTheme()
+export const PhoneInput = memo(
+  ({
+    icon,
+    phone,
+    isFocused,
+    showSoftInputOnFocus,
+    setPhone,
+    setFocus,
+    rightItem,
+  }: PhoneInputProps) => {
+    const inputRef = useRef<TextInput | null>(null)
+    const theme = useTheme()
 
-  return (
-    <Wrapper>
-      <InputWrapper>
-        <Icon source={{ uri: icon }} />
+    const onFocus = useCallback(() => {
+      if (setFocus) {
+        setFocus(true)
+      }
+    }, [setFocus])
+
+    const onEndEditing = useCallback(() => {
+      if (setFocus) {
+        setFocus(false)
+      }
+    }, [setFocus])
+
+    useEffect(() => {
+      if (isFocused) {
+        inputRef.current?.focus()
+      } else {
+        inputRef.current?.blur()
+      }
+    }, [isFocused])
+
+    return (
+      <Wrapper>
+        <IconWrapper>
+          {typeof icon === 'string' ? <Image source={{ uri: icon }} /> : icon}
+        </IconWrapper>
+
         <PhoneInputView
+          ref={inputRef}
           value={phone}
-          onChangeText={(masked: string) => {
-            setPhone(masked)
+          onChangeText={(masked: string, unmasked: string) => {
+            if (masked.length > PHONE_MASK.length) return
+            setPhone(unmasked)
           }}
-          keyboardType="phone-pad"
+          keyboardType="number-pad"
+          showSoftInputOnFocus={showSoftInputOnFocus}
           placeholder="Номер телефона"
           placeholderTextColor={theme.palette.text.tertiary}
           mask={PHONE_MASK}
+          maxLength={PHONE_MASK.length}
+          onFocus={onFocus}
+          onEndEditing={onEndEditing}
         />
-      </InputWrapper>
-    </Wrapper>
-  )
-})
+        <RightItemWrapper>{rightItem}</RightItemWrapper>
+      </Wrapper>
+    )
+  },
+)
+
+PhoneInput.displayName = 'PhoneInput'

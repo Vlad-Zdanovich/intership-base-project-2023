@@ -1,15 +1,11 @@
-import React, { Dispatch, useCallback, useLayoutEffect, useState } from 'react'
+import React, { Dispatch } from 'react'
 import { styled } from '@shared/ui/theme'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useTheme } from '@shared/hooks'
-import { Alert, KeyboardAvoidingView, Platform } from 'react-native'
+import { KeyboardAvoidingView, Platform } from 'react-native'
 import { CardItem } from '@entities/card-item'
 import { PhoneInput } from '@entities/phone-input'
 import { AmountInput } from '@entities/amount-input'
 import { Typography } from '@shared/ui/atoms'
 import { ChipsSelection } from '@entities/chips-selection'
-import { PaymentsNavigationParamsList } from '@screens/payments-screen'
-import { showSnack } from '@entities/snack-connector'
 
 const Wrapper = styled.ScrollView`
   background: ${({ theme }) => theme.palette.background.primary};
@@ -21,6 +17,13 @@ const ButtonWrapper = styled.TouchableOpacity`
   border-radius: 26px;
   height: 52px;
   margin: 0px 16px;
+`
+
+const InputWrapper = styled.View`
+  background: ${({ theme }) => theme.palette.background.secondary};
+  height: 116px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 `
 
 const ChipsWrapper = styled.View`
@@ -67,7 +70,14 @@ export const CreatePaymentScreen = ({
           name="Карта зарплатная"
           value="457 334,00 ₽"
         />
-        <PhoneInput icon={icon} phone={phone} setPhone={setPhone} />
+        <InputWrapper>
+          <PhoneInput
+            icon={icon}
+            phone={phone}
+            setPhone={setPhone}
+            showSoftInputOnFocus={true}
+          />
+        </InputWrapper>
         <AmountInput inputValue={amount} setInputValue={setAmount} />
         <ChipsWrapper>
           <Chips onChipsTapped={(value) => setAmount(value)} />

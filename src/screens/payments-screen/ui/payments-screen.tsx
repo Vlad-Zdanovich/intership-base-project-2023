@@ -14,6 +14,7 @@ const Wrapper = styled.View`
 type PaymentsScreenProps = {
   paymentTypes: PaymentType[]
   isLoading: boolean
+  // eslint-disable-next-line no-unused-vars
   onPaymentItem: (type: PaymentType) => void
 }
 

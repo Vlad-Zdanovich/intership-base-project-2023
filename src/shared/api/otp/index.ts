@@ -1,0 +1,1 @@
+export { postOTPCode } from './get-otp'

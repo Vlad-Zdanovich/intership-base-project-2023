@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTheme } from '@shared/hooks'
 import { Typography } from '@shared/ui/atoms'
 import { IconClose } from '@shared/ui/icons'
@@ -5,7 +6,8 @@ import { styled } from '@shared/ui/theme'
 import { useStore } from 'effector-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { $snackStore, colorHelper, hideTopSnack } from '../model'
+
+import { $snackStore, useColorHelper, hideTopSnack } from '../model'
 
 const Wrapper = styled.View<{
   isShowing: boolean
@@ -42,7 +44,7 @@ export const SnackConnector = () => {
   const theme = useTheme()
   const timeout = useRef(0)
   const [color, setColor] = useState('')
-  const { getColor } = colorHelper()
+  const { getColor } = useColorHelper()
 
   useEffect(() => {
     clearTimeout(timeout.current)
@@ -55,11 +57,11 @@ export const SnackConnector = () => {
     } else {
       setShowing(false)
     }
-  }, [snacks])
+  }, [getColor, snacks])
 
   const onCloseButtonClick = useCallback(() => {
     hideTopSnack()
-  }, [snacks])
+  }, [])
 
   return (
     <Wrapper color={color} isShowing={isShowing} paddingTop={safeArea.top}>

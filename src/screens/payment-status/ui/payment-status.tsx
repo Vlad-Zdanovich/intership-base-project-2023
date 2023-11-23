@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@shared/ui/theme'
 import { IconCheck, IconClose } from '@shared/ui/icons'
 import { Typography } from '@shared/ui/atoms'

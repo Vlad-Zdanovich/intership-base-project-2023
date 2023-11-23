@@ -1,0 +1,1 @@
+export { $loginStatusStore, setLoginStatus } from './model'

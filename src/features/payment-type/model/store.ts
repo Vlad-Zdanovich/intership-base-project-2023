@@ -19,7 +19,7 @@ export const fetchPaymentsFx = createEffect(async () => {
     }
 })
 
-$lastRefreshDate.on($paymentsStore, _ => Date.now())
+$lastRefreshDate.on($paymentsStore, () => Date.now())
 
 sample({
     clock: fetchPaymentsFx.doneData,

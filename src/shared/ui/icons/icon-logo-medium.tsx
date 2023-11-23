@@ -1,11 +1,9 @@
 import React from 'react'
 import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg'
 
-type Props = {
-  color?: string
-}
+import { TBaseIconProps } from './types'
 
-export const IconLogoMedium = ({ color = '#FFFFFF' }: Props) => {
+export const IconLogoMedium = ({ color = '#ffffff' }: TBaseIconProps) => {
   return (
     <Svg width={90} height={101} fill="none">
       <G clipPath="url(#prefix__clip0_76:52980)">

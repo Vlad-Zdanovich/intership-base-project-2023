@@ -20,5 +20,6 @@ const StoryMeta: ComponentMeta<typeof ServiceItem> = {
 export default StoryMeta
 
 export const ServiceItemStories: ComponentStory<typeof ServiceItem> = ({
+  // eslint-disable-next-line react/prop-types
   service,
 }) => <ServiceItem service={service} onPress={() => {}} />

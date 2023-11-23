@@ -1,4 +1,5 @@
 import { PAYMENTS_CATEGORIES_PATH } from "@shared/consts"
+
 import { requestApi } from "./lib"
 import { PaymentTypeResponse } from "./model"
 

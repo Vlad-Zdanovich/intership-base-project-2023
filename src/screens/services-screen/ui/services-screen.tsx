@@ -1,7 +1,6 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { SearchBar, Separator, Typography } from '@shared/ui/atoms'
+import React from 'react'
+import { SearchBar, Separator } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTheme } from '@shared/hooks'
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native'
 import { ServiceItem } from '@entities/service-item'
@@ -22,6 +21,7 @@ type ServicesScreenProps = {
   filteredServices: Service[]
   searchText: string
   setSearchText: React.Dispatch<React.SetStateAction<string>>
+  // eslint-disable-next-line no-unused-vars
   onServiceTapped: (service: Service) => void
 }
 

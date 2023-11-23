@@ -1,3 +1,4 @@
+import React from 'react'
 import { IconClose, IconSearch } from '@shared/ui/icons'
 import { TextInputProps } from 'react-native/types'
 import { useCallback } from 'react'

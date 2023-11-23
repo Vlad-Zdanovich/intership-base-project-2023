@@ -4,9 +4,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
 import { AppNavigation } from '@app/app-navigation'
 import { AppThemeProvider, styled } from '@shared/ui/theme'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { NavigationContainerTheme } from '@features/navigation'
 
 import { Storybook } from '../../.storybook'
-import { QueryClient, QueryClientProvider } from 'react-query'
 
 const StorybookButton = styled.TouchableOpacity`
   height: 32px;
@@ -56,7 +57,7 @@ export const App = () => {
     <StrictMode>
       <AppThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <NavigationContainer>
+          <NavigationContainer theme={NavigationContainerTheme}>
             <SafeAreaProvider>
               <AppNavigation />
             </SafeAreaProvider>

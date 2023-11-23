@@ -21,6 +21,16 @@ export const CreatePaymentConnector = ({ navigation, route }: Props) => {
   const [phone, setPhone] = useState('')
   const [amount, setAmount] = useState(0)
 
+  const onShowPaymentStatus = useCallback(
+    (amount: number, status: PaymentOperationStatus) => {
+      navigation.navigate('PaymentStatus', {
+        amount: amount,
+        isSucceeded: status.success,
+      })
+    },
+    [navigation],
+  )
+
   const onSubmitButtonTapped = useCallback(() => {
     if (isLoading) return
 
@@ -45,17 +55,14 @@ export const CreatePaymentConnector = ({ navigation, route }: Props) => {
         },
       },
     )
-  }, [amount, serviceId])
-
-  const onShowPaymentStatus = useCallback(
-    (amount: number, status: PaymentOperationStatus) => {
-      navigation.navigate('PaymentStatus', {
-        amount: amount,
-        isSucceeded: status.success,
-      })
-    },
-    [],
-  )
+  }, [
+    amount,
+    isLoading,
+    onShowPaymentStatus,
+    paymentOperator?.cashback_percentage,
+    serviceId,
+    updateHistory,
+  ])
 
   return (
     <CreatePaymentScreen

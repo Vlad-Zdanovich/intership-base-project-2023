@@ -1,0 +1,1 @@
+export { AuthSuccsessScreen } from './auth-succsess-screen'

@@ -1,5 +1,9 @@
-export interface PaymentTypeResponse {
-    category: PaymentType[];
+type CategoryName = 'Мобильная связь' | 'ЖКХ' | 'Интернет'
+
+export interface Service {
+    service_id: string;
+    service_name: string;
+    service_icon: string;
 }
 
 export interface PaymentType {
@@ -9,10 +13,6 @@ export interface PaymentType {
     services: Service[];
 }
 
-export interface Service {
-    service_id: string;
-    service_name: string;
-    service_icon: string;
+export interface PaymentTypeResponse {
+    category: PaymentType[];
 }
-
-type CategoryName = 'Мобильная связь' | 'ЖКХ' | 'Интернет'

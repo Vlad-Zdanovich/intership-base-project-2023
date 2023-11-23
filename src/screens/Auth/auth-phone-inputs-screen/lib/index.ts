@@ -1,0 +1,1 @@
+export { usePaddingAnimate } from './use-padding-animate'

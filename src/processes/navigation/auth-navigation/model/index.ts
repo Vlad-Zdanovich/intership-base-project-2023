@@ -1,0 +1,1 @@
+export type { AuthNavigationParamsList } from './auth-navigation-params-list'

@@ -1,9 +1,7 @@
 import React from 'react'
 import { Typography } from '@shared/ui/atoms'
 import { styled } from '@shared/ui/theme'
-
-import { useTheme } from '@shared/hooks'
-import { Service } from '@shared/atoms/payment-type'
+import { Service } from '@shared/api'
 
 const Wrapper = styled.TouchableOpacity`
   flex-direction: row;
@@ -22,12 +20,11 @@ const Icon = styled.Image`
 
 type ServiceItemProps = {
   service: Service
+  // eslint-disable-next-line no-unused-vars
   onPress: (service: Service) => void
 }
 
 export const ServiceItem = ({ service, onPress }: ServiceItemProps) => {
-  const theme = useTheme()
-
   return (
     <Wrapper onPress={() => onPress(service)}>
       <Icon source={{ uri: service.service_icon }} />

@@ -1,6 +1,5 @@
 import { showSnack } from "@entities/snack-connector"
 import { getPaymentsType, PaymentType } from "@shared/api"
-import { useEffect } from "react"
 import { useQuery } from "react-query"
 
 const PAYMENT_CATEGORIES_KEY = "paymentCategories"
@@ -10,7 +9,6 @@ export const usePaymentTypes = () => {
     const {
         data,
         error,
-        isError,
         isLoading
       } = useQuery<any, any, PaymentType[]>({
         queryKey: [PAYMENT_CATEGORIES_KEY],
