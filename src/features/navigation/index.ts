@@ -1,0 +1,1 @@
+export { NavigationContainerTheme } from './theme'

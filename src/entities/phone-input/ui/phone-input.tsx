@@ -101,7 +101,8 @@ export const PhoneInput = memo(
         <PhoneInputView
           ref={inputRef}
           value={phone}
-          onChangeText={(_masked: string, unmasked: string) => {
+          onChangeText={(masked: string, unmasked: string) => {
+            if (masked.length > PHONE_MASK.length) return
             setPhone(unmasked)
           }}
           keyboardType="number-pad"
